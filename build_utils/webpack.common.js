@@ -1,25 +1,31 @@
 const path = require("path");
 const webpack = require("webpack");
-const htmlWebpack = require("html-webpack-plugin");
-const WebpackCleanupPlugin = require("html-webpack-plugin");
-
-var BUILD_DIR = path.resolve(__dirname, "../" , 'dist');
-var APP_DIR = path.resolve(__dirname,"../", 'src');
 
 const config = {
-    entry: "./src/index.js",
+    entry: "./src/component/index.js",
     output: {
-        filename: "[chunkhash].bundle.js",
+        filename: "bundle.js",
         path: path.join(__dirname,"../","dist")
     },
     module: {
         rules: [
             {
-                test: /\.css/,
-                use: [
-                    "style-loader",
-                    "css-loader"
-                ]
+                test: /\.less$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "less-loader" // compiles Less to CSS
+                }]
+            },
+            {
+                test: /\.css$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }]
             },
             {
                 test: /\.js?$/,
@@ -28,14 +34,14 @@ const config = {
                 query: {
                     presets: ["es2015", "react"]
                 }
+            },
+            { 
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+                loader: 'url-loader?limit=100000' 
             }
         ]
     },
-    plugins: [
-        new webpack.ProgressPlugin(),
-        new htmlWebpack(),
-        new WebpackCleanupPlugin()
-    ]
+    plugins:[]
 };
 
 module.exports = config;

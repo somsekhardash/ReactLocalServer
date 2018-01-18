@@ -2,19 +2,20 @@
   "name": "thereact",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "webpack.config.js",
   "scripts": {
     "build": "node ./node_modules/webpack/bin/webpack.js",
     "watch": "npm run build -- --watch",
     "build_dev": "npm run build -- --env=dev",
-    "dev": "npm run webpack-dev-server --port=9000 --env=dev",
     "webpack-dev-server": "webpack-dev-server --port=9000 --env=dev",
-    "webpack": "webpack --watch --env=dev"
+    "webpack": "webpack  --watch --env.NODE_ENV=dev",
+    "local": "node server/local/server.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-loader": "^7.1.2",
+    "cross-env": "^5.1.3",
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",

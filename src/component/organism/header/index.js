@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-require('../../styles/component/header/index.less');
+
+require('../../../styles/component/header/index.less');
 
 export default class Header extends React.Component {
     constructor(props) {

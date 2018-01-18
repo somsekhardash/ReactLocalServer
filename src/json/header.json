@@ -1,0 +1,43 @@
+{
+    "nav":
+    {
+        "items": [
+        {
+            "index": 1,
+            "name": "home",
+            "link": "#"
+        },
+        {
+            "index": 2,
+            "name": "about",
+            "link": "#"
+        },
+        {
+            "index": 3,
+            "name": "portfolio",
+            "link": "#"
+        },
+        {
+            "index": 4,
+            "name": "testimonials",
+            "link": "#"
+        },
+        {
+            "index": 5,
+            "name": "services",
+            "link": "#"
+        },
+        {
+            "index": 6,
+            "name": "blog",
+            "link": "#"
+        },
+        {
+            "index": 7,
+            "name": "contact",
+            "link": "#"
+        }]
+    },
+    "title": "its me",
+    "ref":"http://myjson.com/w05rh"
+}

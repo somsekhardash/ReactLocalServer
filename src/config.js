@@ -1,19 +1,16 @@
 let headerApiUrl,apiBaseUrl,headerSec;
 const path = require("path");
-
-console.log(process.env.NODE_ENV);
-
+import config from "pathName";
 
 if(process.env.NODE_ENV=='dev'){
-    apiBaseUrl=`http://localhost:5001`;
+    apiBaseUrl=config.apiBaseUrl;
     headerApiUrl=`${apiBaseUrl}/json/header.json`;
     headerSec=`${apiBaseUrl}/json/header_section.json`;
-
 }
 
 if(process.env.NODE_ENV=='production'){
-    headerApiUrl=`https://api.myjson.com/bins/w05rh`;
-    headerSec="https://api.myjson.com/bins/otwp1"
+    headerApiUrl= config.headerApiUrl;
+    headerSec= config.headerSec;
 }
 
 module.exports = {"headerApiUrl": headerApiUrl,

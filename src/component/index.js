@@ -1,6 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Container from './ecosystem/homeContainer/index.js'
+//import Container from './ecosystem/homeContainer/index.js';
+import Container from './../container/homePage';
+import {Provider} from "react-redux";
+import store from "./../store";
 
 class App extends React.Component {
   render () {
@@ -10,4 +13,6 @@ class App extends React.Component {
   }
 }
 
-render(<App/>, document.getElementById('app'));
+render(<Provider store={store}>
+  <App></App>
+      </Provider>, document.getElementById('app'));

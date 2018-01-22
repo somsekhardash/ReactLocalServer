@@ -1,22 +1,34 @@
 import React from 'react';
 import { render } from 'react-dom';
-
-require('../../../styles/component/header/index.less');
+import PropTypes from 'prop-types';
+import { prototype } from 'stream';
+require('../../../styles/component/header/index.css');
 
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    getSubLinks(){
+        if(!!this.props.navItems.items)
+        return (
+            this.props.navItems.items.map((item, i)=>(
+                <li className="active" key={i}>
+                    <a className="smoth-scroll" href={item.link}>{item.name}</a>
+                </li>
+            ))
+        )
+    }
+
     render() {
         return <header id="home">
-
             <div className="header-top-area">
                 <div className="container">
                     <div className="row">
 
                         <div className="col-sm-3">
                             <div className="logo">
-                                <a href="index-2.html">WebRes</a>
+                                <a href="index-2.html">{this.props.title}</a>
                             </div>
                         </div>
 
@@ -33,18 +45,7 @@ export default class Header extends React.Component {
                                     </div>
                                     <div className="navbar-collapse collapse">
                                         <ul className="nav navbar-nav navbar-right">
-                                            <li className="active"><a className="smoth-scroll" href="#home">Home <div className="ripple-wrapper"></div></a>
-                                            </li>
-                                            <li><a className="smoth-scroll" href="#about">About</a>
-                                            </li>
-                                            <li><a className="smoth-scroll" href="#portfolio">Portfolio</a>
-                                            </li>
-                                            <li><a className="smoth-scroll" href="#testimonials">Testimonial</a>
-                                            </li>
-                                            <li><a className="smoth-scroll" href="#services">services</a>
-                                            </li>
-                                            <li><a className="smoth-scroll" href="#contact">Contact</a>
-                                            </li>
+                                            {this.getSubLinks()}
                                         </ul>
                                     </div>
                                 </div>
@@ -56,3 +57,13 @@ export default class Header extends React.Component {
         </header>;
     }
 }
+
+
+Header.defaultProps={
+    navItems: {},
+}
+
+Header.propTypes={
+    navItems: PropTypes.object
+}
+

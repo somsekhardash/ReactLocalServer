@@ -7,8 +7,8 @@ app.use(express.static(path.join(__dirname, '../../dist') ));
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
-app.get('/json/header.json', function (req, res) {
-    var data = require('../../src/json/header.json');
+app.get('/assects/json/header.json', function (req, res) {
+    var data = require('../../src/assects/json/header.json');
     res.send(data);
 })
 app.get('/images/bg/profile.png', function (req, res) {

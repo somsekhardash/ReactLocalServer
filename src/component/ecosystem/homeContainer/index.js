@@ -1,6 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import Header from './../../organism/header/index.js';
+import Experience from './../../organism/experience/index';
 import HeaderBanner from './../../molecule/headerBanner/index.js';
 import config from './../../../config.js';
 import PropTypes from 'prop-types';
@@ -34,6 +35,7 @@ export default class Container extends React.Component {
         return <div className="container">
                     <Header title={this.props.headerData.title} navItems={this.props.headerData.nav}></Header>
                     <HeaderBanner></HeaderBanner>
+                    <Experience></Experience>
             </div>;
     }
 }

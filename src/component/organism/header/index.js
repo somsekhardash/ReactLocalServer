@@ -2,7 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import { prototype } from 'stream';
-require('../../../styles/component/header/index.css');
+require('./../../../styles/component/header/index.css');
+
+//import * as asd from ''
 
 export default class Header extends React.Component {
     constructor(props) {

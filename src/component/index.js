@@ -16,3 +16,5 @@ class App extends React.Component {
 render(<Provider store={store}>
   <App></App>
       </Provider>, document.getElementById('app'));
+
+//  render(<App></App>, document.getElementById('app'));     

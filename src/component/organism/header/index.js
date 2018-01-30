@@ -12,11 +12,11 @@ export default class Header extends React.Component {
     }
 
     getSubLinks(){
-        if(!!this.props.navItems.items)
+        if(!!this.props.navItems)
         return (
-            this.props.navItems.items.map((item, i)=>(
+            this.props.navItems.map((item, i)=>(
                 <li className="active" key={i}>
-                    <a className="smoth-scroll" href={item.link}>{item.name}</a>
+                    <a className="smoth-scroll" href={item}>{item}</a>
                 </li>
             ))
         )
@@ -62,10 +62,10 @@ export default class Header extends React.Component {
 
 
 Header.defaultProps={
-    navItems: {},
+    navItems: [],
 }
 
 Header.propTypes={
-    navItems: PropTypes.object
+    navItems: PropTypes.array
 }
 

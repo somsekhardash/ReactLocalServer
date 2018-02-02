@@ -1,16 +1,11 @@
-//import * as ProductService from "./ProductService";
 import config from "./../config";
 import database from "./database";
 
 function fetchJson(url, options) {
-    // return window.fetch(url, options)
-    //        .then ( response => {
-    //            return response.json();
-    //        })
-
-        return database.ref('/').once('value', snap => {
-            return snap.val();
-        });
+    return window.fetch(url, options)
+           .then ( response => {
+               return response.json();
+           })
 }
 
 export function fetchNav() {
@@ -20,9 +15,10 @@ export function fetchNav() {
 export function getNavData() {
     return function(dispatch) {
         fetchNav().then ( products => {
+            debugger;
             dispatch({
                 type: "NAV_INIT",
-                products: products.val()
+                products
             });
         })
     }

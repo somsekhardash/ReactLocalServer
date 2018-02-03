@@ -17,7 +17,7 @@ export default class Experience extends React.Component {
         <div className="container">
            <div className="row">
                 <div className="col-sm-12">
-                   <SectionTitle></SectionTitle>
+                   <SectionTitle title="My Experience." desc="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></SectionTitle>
                 </div>
             </div>
             

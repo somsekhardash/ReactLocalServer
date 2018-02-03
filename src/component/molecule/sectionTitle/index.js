@@ -7,11 +7,11 @@ export default class SectionTitle extends React.Component {
     }
     render() {
         return  <div className="section-title">
-            <h2>My Experience.</h2>
+            <h2>{this.props.title}</h2>
             <div className="divider dark">
             <i className="icon-graduation"></i>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <p>{this.props.desc}</p>
         </div>
         
     }

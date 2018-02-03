@@ -1,17 +1,20 @@
-let headerApiUrl,apiBaseUrl,headerSec;
+let headerApiUrl,apiBaseUrl,headerSec,portfolioUrl;
 const path = require("path");
-import config from "pathName";
+import * as pathName from "pathName";
 
 if(process.env.NODE_ENV=='dev'){
-    apiBaseUrl=config.apiBaseUrl;
+    apiBaseUrl=pathName.apiBaseUrl;
     headerApiUrl=`${apiBaseUrl}/assects/json/header.json`;
     headerSec=`${apiBaseUrl}/assects/json/header_section.json`;
+    portfolioUrl = `${apiBaseUrl}/assects/json/portfolio.json`;
 }
 
 if(process.env.NODE_ENV=='production'){
-    headerApiUrl= config.headerApiUrl;
-    headerSec= config.headerSec;
+    headerApiUrl= pathName.headerApiUrl;
+    headerSec= pathName.headerSec;
+    portfolioUrl = pathName.portfolioUrl;
 }
 
 module.exports = {"headerApiUrl": headerApiUrl,
-                    "apiBaseUrl" : apiBaseUrl }
+                    "apiBaseUrl" : apiBaseUrl,
+                    "portfolioUrl": portfolioUrl  }

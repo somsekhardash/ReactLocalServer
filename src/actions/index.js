@@ -1,5 +1,4 @@
 import config from "./../config";
-import database from "./database";
 
 function fetchJson(url, options) {
     return window.fetch(url, options)
@@ -8,13 +7,13 @@ function fetchJson(url, options) {
            })
 }
 
-export function fetchNav() {
-    return fetchJson(config.headerApiUrl);
+export function fetchData(url) {
+    return fetchJson(config[url]);
 }
 
-export function getNavData() {
+export function getNavData(url) {
     return function(dispatch) {
-        fetchNav().then ( products => {
+        fetchData(url).then ( products => {
             debugger;
             dispatch({
                 type: "NAV_INIT",

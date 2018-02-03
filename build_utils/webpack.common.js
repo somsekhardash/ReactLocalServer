@@ -51,7 +51,7 @@ const config = {
       new ExtractTextPlugin("styles.css")
     ],
     externals: {
-        pathName: JSON.stringify(require(path.join(__dirname,"../", "pathName.json")))
+        pathName: JSON.stringify(require(path.join(__dirname,"../", "pathName.js")))
     }
 };
 

@@ -2,9 +2,9 @@ import config from "./../config";
 
 function fetchJson(url, options) {
     return window.fetch(url, options)
-           .then ( response => {
-               return response.json();
-           })
+        .then ( response => {
+            return response.json();
+        })
 }
 
 export function fetchData(url) {
@@ -14,7 +14,6 @@ export function fetchData(url) {
 export function getNavData(url) {
     return function(dispatch) {
         fetchData(url).then ( products => {
-            debugger;
             dispatch({
                 type: "NAV_INIT",
                 products
@@ -22,5 +21,17 @@ export function getNavData(url) {
         })
     }
 }
+
+export function getPortData(url) {
+    return function(dispatch) {
+        fetchData(url).then ( products => {
+            dispatch({
+                type: "PORT_INIT",
+                products
+            });
+        })
+    }
+}
+
 
 

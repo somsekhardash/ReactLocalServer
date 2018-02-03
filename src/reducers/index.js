@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
-
-import headerReducer from "./headerReducer.js"
+import headerReducer from "./headerReducer";
+import portReducer from "./portReducer"
 
 export default combineReducers({
-  "headerData":headerReducer
+  "headerData":headerReducer,
+  "portReducer":portReducer
 })

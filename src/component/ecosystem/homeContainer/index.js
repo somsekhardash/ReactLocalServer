@@ -16,7 +16,7 @@ export default class Container extends React.Component {
 
     componentDidMount(){
             this.props.actions.getNavData("headerApiUrl");
-           // this.props.actions.getNavData("portfolioUrl");
+            this.props.actions.getPortData("portfolioUrl");
     }
 
     render () {
@@ -24,7 +24,7 @@ export default class Container extends React.Component {
                     <Header title={this.props.headerData.title} navItems={this.props.headerData.nav}></Header>
                     <HeaderBanner></HeaderBanner>
                     <Experience></Experience>
-                    <Portfolio></Portfolio>
+                    <Portfolio portData={this.props.portReducer}></Portfolio>
             </div>;
     }
 }

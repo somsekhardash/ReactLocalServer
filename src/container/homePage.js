@@ -9,7 +9,7 @@ function mapReduxStateToReactProps (state) {
     return {
         //propName [react props]: value [from state]   
         headerData: state.headerData,
-        portReducer: state.portReducer
+        portData: state.portReducer
     }
 }
 

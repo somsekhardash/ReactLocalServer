@@ -17,6 +17,8 @@ export default class Container extends React.Component {
     componentDidMount(){
             this.props.actions.getNavData("headerApiUrl");
             this.props.actions.getPortData("portfolioUrl");
+            // this.props.actions.makeFilter("Wordpress");
+            //this.props.actions.makeFilter(this.props.fullData,"wordpress");
     }
 
     render () {
@@ -24,7 +26,7 @@ export default class Container extends React.Component {
                     <Header title={this.props.headerData.title} navItems={this.props.headerData.nav}></Header>
                     <HeaderBanner></HeaderBanner>
                     <Experience></Experience>
-                    <Portfolio portData={this.props.portReducer}></Portfolio>
+                    <Portfolio portData={this.props.portData} actions={this.props.actions}></Portfolio>
             </div>;
     }
 }

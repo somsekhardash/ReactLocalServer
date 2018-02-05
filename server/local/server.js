@@ -13,7 +13,7 @@ app.get('/assects/json/header.json', function (req, res) {
 })
 app.get('/assects/json/portfolio.json', function (req, res) {
     var data = require('../../src/assects/json/portfolio.json');
-    res.send(data);
+    res.send(data); 
 })
 app.get('/images/bg/profile.png', function (req, res) {
     var data = require('../../src/images/profile.png');

@@ -5,13 +5,19 @@ export default class ProtFilter extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    getDataFilters(){
+        if(!!this.props.dataFilters)
+        return this.props.dataFilters.map((item,i)=>{
+            return <li className="filter" key={i} data-filter={item.grp}>{item.grp}</li>
+        });
+    }
+
     render() {
-        return  <ul class="portfolio">
-                    <li class="filter active" data-filter="all">all</li>
-                    <li class="filter" data-filter=".apps">apps</li>
-                    <li class="filter" data-filter=".mockups">mockups</li>
-                    <li class="filter" data-filter=".wordpress">wordpress</li>
-                </ul>
+        return  <ul className="portfolio">
+            <li className="filter active" data-filter="all">all</li>
+            {this.getDataFilters()} 
+        </ul>
         
     }
 }

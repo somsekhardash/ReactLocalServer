@@ -2,11 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-//const workboxPlugin = require('workbox-webpack-plugin');
-// let entryForClientBundle = {
-//     '/vendor': ['react', 'react-dom', 'prop-types', 'react-redux', 'redux', 'redux-promise', 'babel-polyfill', 'axios'],
-//     '/app': path.resolve(__dirname, './src/component/index.js')
-// }
 
 const config = {
     entry: "./src/component/index.js",
@@ -55,7 +50,7 @@ const config = {
         }
       }),
       new ExtractTextPlugin("styles.css"),
-      new CleanWebpackPlugin(["dist"], {root: path.join(__dirname,"../")})
+      new CleanWebpackPlugin(["../dist"])
     ],
     externals: {
         pathName: JSON.stringify(require(path.join(__dirname,"../", "pathName.js")))

@@ -8,7 +8,7 @@
     "watch": "npm run build -- --watch",
     "build_dev": "npm run build -- --env=dev",
     "webpack-dev-server": "webpack-dev-server --port=9000 --env=dev",
-    "webpack": "webpack  --watch --env.NODE_ENV=dev",
+    "webpack": "webpack --env.NODE_ENV=dev",
     "local": "node server/local/server.js"
   },
   "author": "",

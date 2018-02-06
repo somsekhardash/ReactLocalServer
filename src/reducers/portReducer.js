@@ -5,9 +5,9 @@ export default function reducer(state={}, action) {
         case "PORT_INIT": 
             return Object.assign({}, action.products)
             break;
-        // case "PORT_FILTER":
-        //     return Object.assign({}, _.uniqBy(action.products, action.filter))
-        //     break;
+        case "PORT_FILTER":
+            return Object.assign({}, _.uniqBy(action.products, action.filter))
+            break;
     }
     return state;
 }

@@ -23,7 +23,7 @@ export default class Portfolio extends React.Component {
     }
     
     render() {
-        return <section id="portfolio" className="portfolio section-space-padding">
+        return  <section id="portfolio" className="portfolio section-space-padding">
                     <div className="container">
                     <div className="col-md-2">
                         <ProtFilter dataFilters={ this.props.portData.portfolio && _.uniqBy(this.props.portData.portfolio.items, 'grp')}></ProtFilter>

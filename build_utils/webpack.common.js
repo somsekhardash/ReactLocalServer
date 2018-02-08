@@ -1,21 +1,21 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-// const fs = require('fs');
-// const entryForClientComponents = {};
-// const componentFolder = `${process.cwd()}/src/component/organism/`;
 
-// fs.readdirSync(componentFolder).forEach(folder => {
-//     entryForClientComponents[`global/components/${folder}/index`] = [`${componentFolder}/${folder}/index.js`];
-// });
+const fs = require('fs');
+const entryForClientComponents = {};
+const componentFolder = `${process.cwd()}/src/component/organism/`;
+
+fs.readdirSync(componentFolder).forEach(folder => {
+    entryForClientComponents[`global/components/${folder}/index`] = [`${componentFolder}/${folder}/index.js`];
+});
 
 const htmlTmplReport = require('eslint/lib/formatters/html');
 let entryForClientBundle = {
     'vendor': ['react', 'react-dom', 'prop-types', 'react-redux', 'redux'],
     'app': './src/component/index.js'
 }
-const entries = Object.assign(entryForClientBundle);
+const entries = Object.assign(entryForClientComponents,entryForClientBundle);
 const config = {
     entry: entries,
     module: {
@@ -73,8 +73,7 @@ const config = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
-        }),
-        new CleanWebpackPlugin(["dist"], { root: path.join(__dirname, "../") })
+        })
     ],
     externals: {
         pathName: JSON.stringify(require(path.join(__dirname, "../", "pathName.js")))

@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const config = {
     devtool: "source-map",
     output: {
@@ -19,7 +20,9 @@ const config = {
             name: "commons",
             filename: "commons_chunk.js"
         }),
-        new ExtractTextPlugin("styles.css")
+        //new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true }),
+        new CleanWebpackPlugin(["distDev"], { root: path.join(__dirname, "../") })
     ]
 };
 module.exports = config;

@@ -6,7 +6,7 @@ import HeaderBanner from './../../molecule/headerBanner/index.js';
 import config from './../../../config.js';
 import PropTypes from 'prop-types';
 import Portfolio from './../../organism/portfolio/index';
-
+require('../../../styles/vender/bootstrap/index.css');
 
 export default class Container extends React.Component {
     constructor(props){

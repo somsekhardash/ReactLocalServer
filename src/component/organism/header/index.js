@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import { prototype } from 'stream';
 
-require('../../../styles/vender/bootstrap/index.css');
+
 require('./../../../styles/component/header/index.css');
 
 

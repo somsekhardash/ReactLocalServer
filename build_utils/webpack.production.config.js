@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const config = {
     output: {
         path: path.join(__dirname, "../", "distProd"),
@@ -30,7 +30,9 @@ const config = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
             filename: "commons_chunk.js"
-        })
+        }),
+        new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true }),
+        new CleanWebpackPlugin(["distProd"], { root: path.join(__dirname, "../") })
     ]
 };
 module.exports = config;

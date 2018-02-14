@@ -6,6 +6,8 @@ import HeaderBanner from './../../molecule/headerBanner/index.js';
 import config from './../../../config.js';
 import PropTypes from 'prop-types';
 import Portfolio from './../../organism/portfolio/index';
+import MainForm from './../../form/index';
+
 require('../../../styles/vender/bootstrap/index.css');
 
 export default class Container extends React.Component {
@@ -22,10 +24,11 @@ export default class Container extends React.Component {
 
     render () {
         return <div className="container">
-                    <Header title={this.props.headerData.title} navItems={this.props.headerData.nav}></Header>
+                    {/* <Header title={this.props.headerData.title} navItems={this.props.headerData.nav}></Header>
                     <HeaderBanner></HeaderBanner>
                     <Experience></Experience>
-                    <Portfolio portData={this.props.portData} actions={this.props.actions}></Portfolio>
+                    <Portfolio portData={this.props.portData} actions={this.props.actions}></Portfolio> */}
+                    <MainForm></MainForm>
             </div>;
     }
 }

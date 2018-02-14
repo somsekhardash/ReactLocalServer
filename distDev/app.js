@@ -26420,7 +26420,7 @@ var MGMInputText = function (_React$Component) {
             "minLength": "This is default minLength Error",
             "maxLength": "This is default maxLength Error"
         };
-
+        _this._errorMessage = '';
         Object.assign(_this.validations, _this.props.validations);
         return _this;
     }
@@ -26440,12 +26440,16 @@ var MGMInputText = function (_React$Component) {
     }, {
         key: 'validate',
         value: function validate() {
+            debugger;
             if (!!this.validations && this.isValid) {
                 for (var rule in this.validations) {
                     if (this.isValid) this.defaultValidator(_defineProperty({}, rule, this.validations[rule]));
                 }
+                if (this.isValid) {
+                    this.customValidator();
+                }
             }
-            return this.isValid;
+            return { "isValid": this.isValid, "errorMessage": this._errorMessage };
         }
     }, {
         key: 'makeValid',
@@ -26453,6 +26457,7 @@ var MGMInputText = function (_React$Component) {
             this.setState({
                 errorMessage: ''
             });
+            this._errorMessage = '';
             this.isValid = true;
         }
     }, {
@@ -26461,6 +26466,7 @@ var MGMInputText = function (_React$Component) {
             this.setState({
                 errorMessage: errorMessage
             });
+            this._errorMessage = errorMessage;
             this.isValid = false;
         }
     }, {
@@ -26511,6 +26517,11 @@ var MGMInputText = function (_React$Component) {
                 default:
                     return true;
             }
+        }
+    }, {
+        key: 'customValidator',
+        value: function customValidator() {
+            return true;
         }
     }, {
         key: 'render',
@@ -26604,6 +26615,10 @@ var _index5 = __webpack_require__(131);
 
 var _index6 = _interopRequireDefault(_index5);
 
+var _index7 = __webpack_require__(132);
+
+var _index8 = _interopRequireDefault(_index7);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26626,7 +26641,9 @@ var MainForm = function (_React$Component) {
         value: function MGMInputValidate() {
             this.refs.customerName.validate();
             this.refs.customerEmail.validate();
-            // this.refs.customerPassword.validate();
+            this.refs.customerPassword.validate();
+            this.refs.customerRePassword.validate();
+            this.refs.customerNumber.validate();
         }
     }, {
         key: 'render',
@@ -26661,6 +26678,28 @@ var MainForm = function (_React$Component) {
                     name: 'customerPassword',
                     placeHolder: 'Password',
                     ref: 'customerPassword',
+                    required: true,
+                    validations: { "required": "this is required", "someError": "this is for additional  Validation" }
+                }),
+                _react2.default.createElement(_index6.default, {
+                    label: 'RePassword',
+                    id: 'sign-up-repassword',
+                    classNames: 'sign-up-repassword',
+                    name: 'customerRePassword',
+                    placeHolder: 'RePassword',
+                    ref: 'customerRePassword',
+                    someData: this.refs.customerPassword,
+                    required: true,
+                    validations: { "required": "this is required", "someError": "passWord Should Match" }
+                }),
+                _react2.default.createElement(_index8.default, {
+                    label: 'Number',
+                    id: 'customerNumber',
+                    classNames: 'customerNumber',
+                    name: 'customerNumber',
+                    placeHolder: 'customer Number',
+                    ref: 'customerNumber',
+                    someData: this.refs.customerNumber,
                     required: true,
                     validations: { "required": "this is required" }
                 }),
@@ -26783,7 +26822,7 @@ MGMInputEmail.propTypes = {
 };
 
 MGMInputEmail.defaultProps = {
-    pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/g
+    pattern: /^((([a-z]|\d|[!#\$'\*\+\-\/\?\_\]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$'\*\+\-\/=\?\_\]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i
 };
 
 /***/ }),
@@ -26834,11 +26873,39 @@ var MGMInputPassword = function (_MGMInput) {
             "minLength": "This is default minLength Error",
             "errorMessage": "This is default maxLength Error"
         };
+        _this.state = {
+            type: true
+        };
         Object.assign(_this.validations, _this.props.validations);
+        _this.cPattern = /^[ A-Za-z0-9.\-\/+=_ !$\*?@#,']*$/;
+        _this.type = "password";
         return _this;
     }
 
     _createClass(MGMInputPassword, [{
+        key: 'customValidator',
+        value: function customValidator() {
+            if (this.isValid && this.state.value.length > 0 && !this.cPattern.test(this.state.value)) this.makeInvalid(this.props.validations.someError);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event) {
+            this.setState({
+                value: event.target.value
+            });
+            this.isValid = true;
+            if (event.target.value.length > 0 && !!this.props.someData && this.props.someData.getValue() !== event.target.value) {
+                this.makeInvalid("password are not matching");
+            }
+        }
+    }, {
+        key: 'showPassword',
+        value: function showPassword() {
+            this.setState({
+                type: !this.state.type
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -26853,7 +26920,112 @@ var MGMInputPassword = function (_MGMInput) {
                     this.props.label
                 ),
                 _react2.default.createElement('input', {
-                    type: 'password',
+                    type: this.state.type ? "password" : "text",
+                    id: this.props.id,
+                    name: this.props.name,
+                    readOnly: this.props.readonly,
+                    required: this.props.required,
+                    placeholder: this.props.placeHolder,
+                    className: this.props.classNames,
+                    value: this.state.value,
+                    onChange: this.handleChange.bind(this)
+                }),
+                _react2.default.createElement(
+                    'span',
+                    { onClick: this.showPassword.bind(this) },
+                    '#'
+                ),
+                !this.isValid && _react2.default.createElement(
+                    'p',
+                    {
+                        className: 'error label',
+                        generated: 'true' },
+                    this.state.errorMessage
+                )
+            );
+        }
+    }]);
+
+    return MGMInputPassword;
+}(_index2.default);
+
+exports.default = MGMInputPassword;
+
+
+MGMInputPassword.defaultProps = {
+    pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/g,
+    maxLength: 10,
+    minLength: 3
+};
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(3);
+
+var _propTypes = __webpack_require__(12);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _index = __webpack_require__(128);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MGMInputNumber = function (_MGMInput) {
+    _inherits(MGMInputNumber, _MGMInput);
+
+    function MGMInputNumber(props) {
+        _classCallCheck(this, MGMInputNumber);
+
+        var _this = _possibleConstructorReturn(this, (MGMInputNumber.__proto__ || Object.getPrototypeOf(MGMInputNumber)).call(this, props));
+
+        _this.validations = {
+            "pattern": "invalid mobile number",
+            "maxLength": "Mobile number must be less then 16",
+            "minLength": "Mobile number must be more then 10"
+        };
+        Object.assign(_this.validations, _this.props.validations);
+        return _this;
+    }
+
+    _createClass(MGMInputNumber, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: (this.isValid ? '' : 'error') + ' field-wrapper form-group' },
+                this.props.label && _react2.default.createElement(
+                    'label',
+                    {
+                        htmlFor: this.props.id,
+                        className: (this.props.required ? 'required' : '') + ' ' + this.props.classNames + '-label ',
+                        'aria-required': this.props.required },
+                    this.props.label
+                ),
+                _react2.default.createElement('input', {
+                    type: 'text',
                     id: this.props.id,
                     name: this.props.name,
                     readOnly: this.props.readonly,
@@ -26874,29 +27046,16 @@ var MGMInputPassword = function (_MGMInput) {
         }
     }]);
 
-    return MGMInputPassword;
+    return MGMInputNumber;
 }(_index2.default);
 
-exports.default = MGMInputPassword;
+exports.default = MGMInputNumber;
 
 
-MGMInputPassword.propTypes = {
-    label: _propTypes2.default.string,
-    id: _propTypes2.default.string,
-    required: _propTypes2.default.bool,
-    readonly: _propTypes2.default.bool,
-    class: _propTypes2.default.string,
-    name: _propTypes2.default.string,
-    placeHolder: _propTypes2.default.string,
-    value: _propTypes2.default.string,
-    maxLength: _propTypes2.default.string,
-    pattern: _propTypes2.default.object
-};
-
-MGMInputPassword.defaultProps = {
-    pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/g,
-    maxLength: "8",
-    minLength: "20"
+MGMInputNumber.defaultProps = {
+    pattern: /^((\+?[1-9]\d-?)|(\+?[1-9]\d -?)|(\+?[1-9]\d - ?)|(\+?[1-9]\d- ?)|(\+?\(?[1-9]\d\)?-?)|(\+?\(?[1-9]\d\)? - ?)|(\+?\(?[1-9]\d\)? -?)|(\+?\(?[1-9]\d\)?- ?)|(\+?1- ?)|(\+?1 -?)|(\+?1)|(\+?1 - ?)|(\+?\(?1\)?- ?)|(\+?\(?1\)? - ?))?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[0-9]([02-9]\d|1[02-9])-?\d{4}$/,
+    minLength: 10,
+    maxLength: 16
 };
 
 /***/ })

@@ -3,11 +3,15 @@ import { render } from 'react-dom';
 import MGMInputText from './MGMInputText/index';
 import MGMInputEmail from './MGMInputEmail/index'; 
 import MGMInputPassword from './MGMInputPassword/index'; 
+import MGMInputNumber from './MGMInputNumber/index';
 export default class MainForm extends React.Component {
+    
     MGMInputValidate(){
-        this.refs.customerName.validate();     
+        this.refs.customerName.validate();
         this.refs.customerEmail.validate();   
-        // this.refs.customerPassword.validate();
+        this.refs.customerPassword.validate();
+        this.refs.customerRePassword.validate();
+        this.refs.customerNumber.validate();
     }
     
     render() {
@@ -40,9 +44,30 @@ export default class MainForm extends React.Component {
                 placeHolder="Password"
                 ref="customerPassword"
                 required
-                validations={{"required":"this is required"}}
+                validations={{"required":"this is required","someError":"this is for additional  Validation"}}
             ></MGMInputPassword>
-            
+            <MGMInputPassword
+                label="RePassword"
+                id="sign-up-repassword"
+                classNames="sign-up-repassword"
+                name="customerRePassword"
+                placeHolder="RePassword"
+                ref="customerRePassword"
+                someData={this.refs.customerPassword}
+                required
+                validations={{"required":"this is required","someError":"passWord Should Match"}}
+            ></MGMInputPassword>
+            <MGMInputNumber
+             label="Number"
+             id="customerNumber"
+             classNames="customerNumber"
+             name="customerNumber"
+             placeHolder="customer Number"
+             ref="customerNumber"
+             someData={this.refs.customerNumber}
+             required
+             validations={{"required":"this is required"}}
+            ></MGMInputNumber>
 
             <button onClick={this.MGMInputValidate.bind(this)}>
                 clickME

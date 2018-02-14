@@ -14,7 +14,7 @@ export default class MGMInputText extends React.Component {
             "minLength": "This is default minLength Error",
             "maxLength": "This is default maxLength Error"
         }
-
+        this._errorMessage='';
         Object.assign(this.validations, this.props.validations);
     }
 
@@ -29,19 +29,24 @@ export default class MGMInputText extends React.Component {
     }
 
     validate() {
+        debugger;
         if (!!this.validations && this.isValid) {
             for (var rule in this.validations) {
                 if (this.isValid)
                     this.defaultValidator({ [rule]: this.validations[rule] });
             }
+            if (this.isValid){
+                this.customValidator();
+            }
         }
-        return this.isValid;
+        return {"isValid":this.isValid,"errorMessage":this._errorMessage};
     }
 
     makeValid() {
         this.setState({
             errorMessage: ''
         });
+        this._errorMessage = '';
         this.isValid = true;
     }
 
@@ -49,6 +54,7 @@ export default class MGMInputText extends React.Component {
         this.setState({
             errorMessage: errorMessage
         });
+        this._errorMessage = errorMessage;
         this.isValid = false;
     }
 
@@ -96,6 +102,10 @@ export default class MGMInputText extends React.Component {
             default:
                 return true;
         }
+    }
+
+    customValidator(){
+        return true;
     }
 
     render() {

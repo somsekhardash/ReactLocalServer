@@ -3,43 +3,16 @@ import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import MGMInput from './../MGMInputText/index'
 
-export default class MGMInputPassword extends MGMInput {
+export default class MGMInputNumber extends MGMInput {
     constructor(props) {
         super(props);
         this.validations = {
-            "pattern": "This is default Error",
-            "minLength": "This is default minLength Error",
-            "errorMessage": "This is default maxLength Error"
+            "pattern": "invalid mobile number",
+            "maxLength": "Mobile number must be less then 16",
+            "minLength": "Mobile number must be more then 10"
         }
-        this.state = {
-            type: true
-        };
         Object.assign(this.validations, this.props.validations);
-        this.cPattern = /^[ A-Za-z0-9.\-\/+=_ !$\*?@#,']*$/;
-        this.type = "password";
     }
-
-    customValidator() {
-        if (this.isValid && this.state.value.length > 0 && !this.cPattern.test(this.state.value))
-            this.makeInvalid(this.props.validations.someError);
-    }
-
-    handleChange(event) {
-        this.setState({
-            value: event.target.value
-        });
-        this.isValid = true;
-        if (event.target.value.length > 0 && !!this.props.someData && this.props.someData.getValue() !== event.target.value) {
-            this.makeInvalid("password are not matching");
-        }
-    }
-
-    showPassword() {
-        this.setState({
-            type: !this.state.type
-        });
-    }
-
 
     render() {
         return <div className={`${this.isValid ? '' : 'error'} field-wrapper form-group`} >
@@ -48,7 +21,7 @@ export default class MGMInputPassword extends MGMInput {
                 className={`${this.props.required ? 'required' : ''} ${this.props.classNames}-label `}
                 aria-required={this.props.required}>{this.props.label}</label>}
             <input
-                type={this.state.type ? "password" : "text"}
+                type="text"
                 id={this.props.id}
                 name={this.props.name}
                 readOnly={this.props.readonly}
@@ -58,8 +31,6 @@ export default class MGMInputPassword extends MGMInput {
                 value={this.state.value}
                 onChange={this.handleChange.bind(this)}
             />
-
-            <span onClick={this.showPassword.bind(this)}>#</span>
 
             {!this.isValid && <p
                 className="error label"
@@ -71,9 +42,9 @@ export default class MGMInputPassword extends MGMInput {
 }
 
 
-MGMInputPassword.defaultProps = {
-    pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/g,
-    maxLength: 10,
-    minLength: 3
+MGMInputNumber.defaultProps = {
+    pattern:/^((\+?[1-9]\d-?)|(\+?[1-9]\d -?)|(\+?[1-9]\d - ?)|(\+?[1-9]\d- ?)|(\+?\(?[1-9]\d\)?-?)|(\+?\(?[1-9]\d\)? - ?)|(\+?\(?[1-9]\d\)? -?)|(\+?\(?[1-9]\d\)?- ?)|(\+?1- ?)|(\+?1 -?)|(\+?1)|(\+?1 - ?)|(\+?\(?1\)?- ?)|(\+?\(?1\)? - ?))?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[0-9]([02-9]\d|1[02-9])-?\d{4}$/,
+    minLength: 10,
+    maxLength: 16
 }
 

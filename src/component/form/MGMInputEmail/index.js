@@ -1,39 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
-import MGMInput from './../MGMInputText/index'
+import MGMInputText from './../MGMInputText/index'
 
-export default class MGMInputEmail extends MGMInput {
+export default class MGMInputEmail extends MGMInputText {
     constructor(props) {
         super(props);
-        if (!this.props.pattern)
-            this.pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        else
-            this.pattern = this.props.pattern;
-    }
-
-    defaultValidator() {
-        if (!!this.state.value && this.state.value.length > 0 && !this.pattern.test(this.state.value))
-            this.makeInvalid("invalid eMail ID");
-        else
-            this.makeValid();
-    }
-
-    costomValidator(errorObj) {
-        let myKey = Object.keys(errorObj)[0];
-        switch (myKey) {
-            case "pattern": {
-                if (!!this.state.value && this.state.value.length > 0) {
-                    debugger;
-                    if (!this.pattern.test(this.state.value))
-                        this.makeInvalid(errorObj[myKey]);
-                } else {
-                    this.makeValid();
-                }
-            }
-                break;
-            default:
-                return true;
+        this.validations = {
+            "pattern": "This is default pattern Error"
         }
     }
 
@@ -75,3 +49,9 @@ MGMInputEmail.propTypes = {
     value: PropTypes.string,
     maxLength: PropTypes.string
 };
+
+
+MGMInputEmail.defaultProps = {
+    pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/g
+}
+

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 
-export default class MGMInput extends React.Component {
+export default class MGMInputText extends React.Component {
     constructor(props) {
         super(props);
         this.isValid = true;
@@ -10,14 +10,12 @@ export default class MGMInput extends React.Component {
             errorMessage: '',
             value: props.value ? props.value : ''
         }
-    }
-
-    requiredValidation() {
-        if (this.props.required && !this.state.value) {
-            this.makeInvalid(this.props.validations["required"]);
-        } else {
-            this.makeValid();
+        this.validations = {
+            "minLength": "This is default minLength Error",
+            "maxLength": "This is default maxLength Error"
         }
+
+        Object.assign(this.validations, this.props.validations);
     }
 
     setValue(val) {
@@ -31,15 +29,12 @@ export default class MGMInput extends React.Component {
     }
 
     validate() {
-        this.requiredValidation();
-        if (this.isValid)
-            this.defaultValidator();
-            if (!!this.props.validations && this.isValid){
-                for (var rule in this.props.validations) {
-                    if (this.isValid) 
-                        this.costomValidator({ [rule]: this.props.validations[rule] });
-                }
+        if (!!this.validations && this.isValid) {
+            for (var rule in this.validations) {
+                if (this.isValid)
+                    this.defaultValidator({ [rule]: this.validations[rule] });
             }
+        }
         return this.isValid;
     }
 
@@ -64,9 +59,17 @@ export default class MGMInput extends React.Component {
         this.isValid = true;
     }
 
-    costomValidator(errorObj) {
+    defaultValidator(errorObj) {
         let myKey = Object.keys(errorObj)[0];
         switch (myKey) {
+            case "required": {
+                if (!this.state.value && this.props.required) {
+                    this.makeInvalid(errorObj[myKey]);
+                } else {
+                    this.makeValid();
+                }
+            }
+                break;
             case "maxLength": {
                 if (!!this.state.value && this.state.value.length > this.props.maxLength) {
                     this.makeInvalid(errorObj[myKey]);
@@ -83,15 +86,15 @@ export default class MGMInput extends React.Component {
                 }
             }
                 break;
+            case "pattern": {
+                if (!!this.state.value && !this.props.pattern.test(this.state.value))
+                    this.makeInvalid(errorObj[myKey]);
+                else
+                    this.makeValid();
+            }
+                break;
             default:
                 return true;
-        }
-    }
-
-
-    defaultValidator() {
-        if (this.state.value.length == 0) {
-            this.makeInvalid("default required");
         }
     }
 
@@ -124,7 +127,7 @@ export default class MGMInput extends React.Component {
     }
 }
 
-MGMInput.propTypes = {
+MGMInputText.propTypes = {
     label: PropTypes.string,
     id: PropTypes.string,
     required: PropTypes.bool,
@@ -133,5 +136,13 @@ MGMInput.propTypes = {
     name: PropTypes.string,
     placeHolder: PropTypes.string,
     value: PropTypes.string,
-    maxLength: PropTypes.string
+    maxLength: PropTypes.number,
+    minLength: PropTypes.number,
 };
+
+
+MGMInputText.defaultProps = {
+    maxLength: 5,
+    minLength: 10
+}
+

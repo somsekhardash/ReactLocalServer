@@ -6,55 +6,12 @@ import MGMInput from './../MGMInputText/index'
 export default class MGMInputPassword extends MGMInput {
     constructor(props) {
         super(props);
-
         this.validations = {
             "pattern": "This is default Error",
             "minLength": "This is default minLength Error",
             "errorMessage": "This is default maxLength Error"
         }
-
         Object.assign(this.validations, this.props.validations);
-
-    }
-
-    defaultValidator() {
-        // if (!!this.state.value && this.state.value.length > 0 && !this.pattern.test(this.state.value))
-        //     this.makeInvalid("invalid Password");
-        // else
-        //     this.makeValid();
-
-        // if (!!this.state.value && this.state.value.length > this.maxLength)
-        //     this.makeInvalid("invalid MaxLength");
-        // else
-        //     this.makeValid();
-
-        // if (!!this.state.value && this.state.value.length < this.minLength)
-        //     this.makeInvalid("invalid MinLength");
-        // else
-        //     this.makeValid();    
-
-        for (var rule in this.validations) {
-            if (this.isValid) 
-                this.costomValidator({ [rule]: this.validations[rule] });
-        }
-
-    }
-
-    costomValidator(errorObj) {
-        let myKey = Object.keys(errorObj)[0];
-        switch (myKey) {
-            case "pattern": {
-                if (!!this.state.value && this.state.value.length > 0) {
-                    if (!this.props.pattern.test(this.state.value.trim()))
-                        this.makeInvalid(errorObj[myKey]);
-                } else {
-                    this.makeValid();
-                }
-            }
-                break;
-            default:
-                return true;
-        }
     }
 
     render() {
@@ -93,7 +50,7 @@ MGMInputPassword.propTypes = {
     placeHolder: PropTypes.string,
     value: PropTypes.string,
     maxLength: PropTypes.string,
-    pattern:PropTypes.object
+    pattern: PropTypes.object
 };
 
 

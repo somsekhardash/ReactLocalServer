@@ -26403,32 +26403,29 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MGMInput = function (_React$Component) {
-    _inherits(MGMInput, _React$Component);
+var MGMInputText = function (_React$Component) {
+    _inherits(MGMInputText, _React$Component);
 
-    function MGMInput(props) {
-        _classCallCheck(this, MGMInput);
+    function MGMInputText(props) {
+        _classCallCheck(this, MGMInputText);
 
-        var _this = _possibleConstructorReturn(this, (MGMInput.__proto__ || Object.getPrototypeOf(MGMInput)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (MGMInputText.__proto__ || Object.getPrototypeOf(MGMInputText)).call(this, props));
 
         _this.isValid = true;
         _this.state = {
             errorMessage: '',
             value: props.value ? props.value : ''
         };
+        _this.validations = {
+            "minLength": "This is default minLength Error",
+            "maxLength": "This is default maxLength Error"
+        };
+
+        Object.assign(_this.validations, _this.props.validations);
         return _this;
     }
 
-    _createClass(MGMInput, [{
-        key: 'requiredValidation',
-        value: function requiredValidation() {
-            if (this.props.required && !this.state.value) {
-                this.makeInvalid(this.props.validations["required"]);
-            } else {
-                this.makeValid();
-            }
-        }
-    }, {
+    _createClass(MGMInputText, [{
         key: 'setValue',
         value: function setValue(val) {
             this.setState({
@@ -26443,11 +26440,9 @@ var MGMInput = function (_React$Component) {
     }, {
         key: 'validate',
         value: function validate() {
-            this.requiredValidation();
-            if (this.isValid) this.defaultValidator();
-            if (!!this.props.validations && this.isValid) {
-                for (var rule in this.props.validations) {
-                    if (this.isValid) this.costomValidator(_defineProperty({}, rule, this.props.validations[rule]));
+            if (!!this.validations && this.isValid) {
+                for (var rule in this.validations) {
+                    if (this.isValid) this.defaultValidator(_defineProperty({}, rule, this.validations[rule]));
                 }
             }
             return this.isValid;
@@ -26477,10 +26472,19 @@ var MGMInput = function (_React$Component) {
             this.isValid = true;
         }
     }, {
-        key: 'costomValidator',
-        value: function costomValidator(errorObj) {
+        key: 'defaultValidator',
+        value: function defaultValidator(errorObj) {
             var myKey = Object.keys(errorObj)[0];
             switch (myKey) {
+                case "required":
+                    {
+                        if (!this.state.value && this.props.required) {
+                            this.makeInvalid(errorObj[myKey]);
+                        } else {
+                            this.makeValid();
+                        }
+                    }
+                    break;
                 case "maxLength":
                     {
                         if (!!this.state.value && this.state.value.length > this.props.maxLength) {
@@ -26499,15 +26503,13 @@ var MGMInput = function (_React$Component) {
                         }
                     }
                     break;
+                case "pattern":
+                    {
+                        if (!!this.state.value && !this.props.pattern.test(this.state.value)) this.makeInvalid(errorObj[myKey]);else this.makeValid();
+                    }
+                    break;
                 default:
                     return true;
-            }
-        }
-    }, {
-        key: 'defaultValidator',
-        value: function defaultValidator() {
-            if (this.state.value.length == 0) {
-                this.makeInvalid("default required");
             }
         }
     }, {
@@ -26547,13 +26549,13 @@ var MGMInput = function (_React$Component) {
         }
     }]);
 
-    return MGMInput;
+    return MGMInputText;
 }(_react2.default.Component);
 
-exports.default = MGMInput;
+exports.default = MGMInputText;
 
 
-MGMInput.propTypes = {
+MGMInputText.propTypes = {
     label: _propTypes2.default.string,
     id: _propTypes2.default.string,
     required: _propTypes2.default.bool,
@@ -26562,7 +26564,13 @@ MGMInput.propTypes = {
     name: _propTypes2.default.string,
     placeHolder: _propTypes2.default.string,
     value: _propTypes2.default.string,
-    maxLength: _propTypes2.default.string
+    maxLength: _propTypes2.default.number,
+    minLength: _propTypes2.default.number
+};
+
+MGMInputText.defaultProps = {
+    maxLength: 5,
+    minLength: 10
 };
 
 /***/ }),
@@ -26618,7 +26626,7 @@ var MainForm = function (_React$Component) {
         value: function MGMInputValidate() {
             this.refs.customerName.validate();
             this.refs.customerEmail.validate();
-            this.refs.customerPassword.validate();
+            // this.refs.customerPassword.validate();
         }
     }, {
         key: 'render',
@@ -26631,12 +26639,12 @@ var MainForm = function (_React$Component) {
                     id: 'sign-up-name',
                     classNames: 'sign-up-name',
                     name: 'customerName',
-                    minLength: '5',
+                    minLength: 5,
                     placeHolder: 'Name',
                     ref: 'customerName',
-                    maxLength: '10',
+                    maxLength: 10,
                     required: true,
-                    validations: { "required": "this is required", "maxLength": "you can give max 8 char", "minLength": "you can't give less then 5 char" }
+                    validations: { "required": "this is required", "minLength": "please provide more then 5 char" }
                 }),
                 _react2.default.createElement(_index4.default, {
                     label: 'Email',
@@ -26705,43 +26713,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MGMInputEmail = function (_MGMInput) {
-    _inherits(MGMInputEmail, _MGMInput);
+var MGMInputEmail = function (_MGMInputText) {
+    _inherits(MGMInputEmail, _MGMInputText);
 
     function MGMInputEmail(props) {
         _classCallCheck(this, MGMInputEmail);
 
         var _this = _possibleConstructorReturn(this, (MGMInputEmail.__proto__ || Object.getPrototypeOf(MGMInputEmail)).call(this, props));
 
-        if (!_this.props.pattern) _this.pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;else _this.pattern = _this.props.pattern;
+        _this.validations = {
+            "pattern": "This is default pattern Error"
+        };
         return _this;
     }
 
     _createClass(MGMInputEmail, [{
-        key: 'defaultValidator',
-        value: function defaultValidator() {
-            if (!!this.state.value && this.state.value.length > 0 && !this.pattern.test(this.state.value)) this.makeInvalid("invalid eMail ID");else this.makeValid();
-        }
-    }, {
-        key: 'costomValidator',
-        value: function costomValidator(errorObj) {
-            var myKey = Object.keys(errorObj)[0];
-            switch (myKey) {
-                case "pattern":
-                    {
-                        if (!!this.state.value && this.state.value.length > 0) {
-                            debugger;
-                            if (!this.pattern.test(this.state.value)) this.makeInvalid(errorObj[myKey]);
-                        } else {
-                            this.makeValid();
-                        }
-                    }
-                    break;
-                default:
-                    return true;
-            }
-        }
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -26796,6 +26782,10 @@ MGMInputEmail.propTypes = {
     maxLength: _propTypes2.default.string
 };
 
+MGMInputEmail.defaultProps = {
+    pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]))/g
+};
+
 /***/ }),
 /* 131 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -26825,8 +26815,6 @@ var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -26846,53 +26834,11 @@ var MGMInputPassword = function (_MGMInput) {
             "minLength": "This is default minLength Error",
             "errorMessage": "This is default maxLength Error"
         };
-
         Object.assign(_this.validations, _this.props.validations);
-
         return _this;
     }
 
     _createClass(MGMInputPassword, [{
-        key: 'defaultValidator',
-        value: function defaultValidator() {
-            // if (!!this.state.value && this.state.value.length > 0 && !this.pattern.test(this.state.value))
-            //     this.makeInvalid("invalid Password");
-            // else
-            //     this.makeValid();
-
-            // if (!!this.state.value && this.state.value.length > this.maxLength)
-            //     this.makeInvalid("invalid MaxLength");
-            // else
-            //     this.makeValid();
-
-            // if (!!this.state.value && this.state.value.length < this.minLength)
-            //     this.makeInvalid("invalid MinLength");
-            // else
-            //     this.makeValid();    
-
-            for (var rule in this.validations) {
-                if (this.isValid) this.costomValidator(_defineProperty({}, rule, this.validations[rule]));
-            }
-        }
-    }, {
-        key: 'costomValidator',
-        value: function costomValidator(errorObj) {
-            var myKey = Object.keys(errorObj)[0];
-            switch (myKey) {
-                case "pattern":
-                    {
-                        if (!!this.state.value && this.state.value.length > 0) {
-                            if (!this.props.pattern.test(this.state.value.trim())) this.makeInvalid(errorObj[myKey]);
-                        } else {
-                            this.makeValid();
-                        }
-                    }
-                    break;
-                default:
-                    return true;
-            }
-        }
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(

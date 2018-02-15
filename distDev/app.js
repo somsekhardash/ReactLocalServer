@@ -26440,7 +26440,6 @@ var MGMInputText = function (_React$Component) {
     }, {
         key: 'validate',
         value: function validate() {
-            debugger;
             if (!!this.validations && this.isValid) {
                 for (var rule in this.validations) {
                     if (this.isValid) this.defaultValidator(_defineProperty({}, rule, this.validations[rule]));

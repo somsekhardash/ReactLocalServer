@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 
-export default class MGMInputText extends React.Component {
+export default class MGMSelectInput extends React.Component {
     constructor(props) {
         super(props);
         this.isValid = true;
@@ -11,8 +11,6 @@ export default class MGMInputText extends React.Component {
             value: props.value ? props.value : ''
         }
         this.validations = {
-            "minLength": "This is default minLength Error",
-            "maxLength": "This is default maxLength Error"
         }
         this._errorMessage='';
         Object.assign(this.validations, this.props.validations);
@@ -74,30 +72,7 @@ export default class MGMInputText extends React.Component {
                     this.makeValid();
                 }
             }
-                break;
-            case "maxLength": {
-                if (!!this.state.value && this.state.value.length > this.props.maxLength) {
-                    this.makeInvalid(errorObj[myKey]);
-                } else {
-                    this.makeValid();
-                }
-            }
-                break;
-            case "minLength": {
-                if (!!this.state.value && this.state.value.length < this.props.minLength) {
-                    this.makeInvalid(errorObj[myKey]);
-                } else {
-                    this.makeValid();
-                }
-            }
-                break;
-            case "pattern": {
-                if (!!this.state.value && !this.props.pattern.test(this.state.value))
-                    this.makeInvalid(errorObj[myKey]);
-                else
-                    this.makeValid();
-            }
-                break;
+            break;
             default:
                 return true;
         }
@@ -125,6 +100,14 @@ export default class MGMInputText extends React.Component {
                 value={this.state.value}
                 onChange={this.handleChange.bind(this)}
             />
+
+            <select name="carlist" form="carform">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+
 
             {!this.isValid && <p
                 className="error label"

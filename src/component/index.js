@@ -2,11 +2,12 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from "react-redux";
 import store from "./../store";
-import App from "./ecosystem/appContainer/index";
+//import App from "./ecosystem/appContainer/index";
+import Container from "./ecosystem/homeContainer/index";
 import Blogging from "./ecosystem/bloggingContainer/index";
 
 render(<Provider store={store}>
-  <App></App>
+  <Container />
       </Provider>, document.getElementById('app'));
 
 /*let componentChecker = {

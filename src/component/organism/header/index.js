@@ -2,20 +2,18 @@ import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import { prototype } from 'stream';
-
-
+import {connect} from "react-redux";
 require('./../../../styles/component/header/index.css');
 
-
-export default class Header extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
     }
 
     getSubLinks(){
-        if(!!this.props.navItems.items)
+        if(!!this.props.headerData.nav)
         return (
-            this.props.navItems.items.map((item, i)=>(
+            this.props.headerData.nav.items.map((item, i)=>(
                 <li className="active" key={i}>
                     <a className="smoth-scroll" href={item.link}>{item.name}</a>
                 </li>
@@ -31,7 +29,7 @@ export default class Header extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="logo">
-                                <a href="index-2.html">{this.props.title}</a>
+                                <a href="index-2.html">{this.props.headerData.title}</a>
                             </div>
                         </div>
 
@@ -63,10 +61,15 @@ export default class Header extends React.Component {
 
 
 Header.defaultProps={
-    navItems: {},
 }
 
 Header.propTypes={
-    navItems: PropTypes.object
 }
 
+let mapStateToProps = (state) => {
+    return {
+        headerData: state.headerReducer
+    };
+}
+
+export default connect(mapStateToProps)(Header);

@@ -1,7 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { makeFilter } from '../../../actions/index';
+import { bindActionCreators } from 'redux';
+import {connect} from "react-redux";
 
-export default class ProtFilter extends React.Component {
+
+class ProtFilter extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -21,3 +25,13 @@ export default class ProtFilter extends React.Component {
         
     }
 }
+
+//onClick={this.props.dispatch(makeFilter(item.grp))}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+       actions: bindActionCreators(makeFilter,dispatch)
+    }
+}
+
+export default connect(mapDispatchToProps)(ProtFilter);

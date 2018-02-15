@@ -4,8 +4,9 @@ import ProtItem from './../../molecule/portItem/index';
 import ProtFilter from './../../molecule/portFilter/index';
 import _ from 'lodash';
 import FlipMove from 'react-flip-move';
+import {connect} from "react-redux";
 
-export default class Portfolio extends React.Component {
+class Portfolio extends React.Component {
     constructor(props) {
         super(props);
         this.state={
@@ -26,7 +27,7 @@ export default class Portfolio extends React.Component {
         return  <section id="portfolio" className="portfolio section-space-padding">
                     <div className="container">
                     <div className="col-md-2">
-                        <ProtFilter dataFilters={ this.props.portData.portfolio && _.uniqBy(this.props.portData.portfolio.items, 'grp')}></ProtFilter>
+                        <ProtFilter dataFilters={ !!this.props.portData.portfolio && _.uniqBy(this.props.portData.portfolio.items, 'grp')}></ProtFilter>
                     </div>   
                         {this.makePortData()}
                     </div>
@@ -35,3 +36,10 @@ export default class Portfolio extends React.Component {
 
 }
 
+let mapStateToProps = (state) => {
+    return {
+        portData: state.portReducer
+    };
+}
+
+export default connect(mapStateToProps)(Portfolio);

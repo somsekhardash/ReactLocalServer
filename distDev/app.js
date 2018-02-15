@@ -275,196 +275,7 @@ function objectToString(o) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15).Buffer))
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
+/* 6 */,
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24722,6 +24533,8 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _stream = __webpack_require__(19);
 
+var _reactRedux = __webpack_require__(52);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24744,7 +24557,7 @@ var Header = function (_React$Component) {
     _createClass(Header, [{
         key: 'getSubLinks',
         value: function getSubLinks() {
-            if (!!this.props.navItems.items) return this.props.navItems.items.map(function (item, i) {
+            if (!!this.props.headerData.nav) return this.props.headerData.nav.items.map(function (item, i) {
                 return _react2.default.createElement(
                     'li',
                     { className: 'active', key: i },
@@ -24780,7 +24593,7 @@ var Header = function (_React$Component) {
                                     _react2.default.createElement(
                                         'a',
                                         { href: 'index-2.html' },
-                                        this.props.title
+                                        this.props.headerData.title
                                     )
                                 )
                             ),
@@ -24831,16 +24644,17 @@ var Header = function (_React$Component) {
     return Header;
 }(_react2.default.Component);
 
-exports.default = Header;
+Header.defaultProps = {};
 
+Header.propTypes = {};
 
-Header.defaultProps = {
-    navItems: {}
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        headerData: state.headerReducer
+    };
 };
 
-Header.propTypes = {
-    navItems: _propTypes2.default.object
-};
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Header);
 
 /***/ }),
 /* 47 */
@@ -24882,6 +24696,8 @@ var _lodash2 = _interopRequireDefault(_lodash);
 var _reactFlipMove = __webpack_require__(40);
 
 var _reactFlipMove2 = _interopRequireDefault(_reactFlipMove);
+
+var _reactRedux = __webpack_require__(52);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24929,7 +24745,7 @@ var Portfolio = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-md-2' },
-                        _react2.default.createElement(_index4.default, { dataFilters: this.props.portData.portfolio && _lodash2.default.uniqBy(this.props.portData.portfolio.items, 'grp') })
+                        _react2.default.createElement(_index4.default, { dataFilters: !!this.props.portData.portfolio && _lodash2.default.uniqBy(this.props.portData.portfolio.items, 'grp') })
                     ),
                     this.makePortData()
                 )
@@ -24940,7 +24756,13 @@ var Portfolio = function (_React$Component) {
     return Portfolio;
 }(_react2.default.Component);
 
-exports.default = Portfolio;
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        portData: state.portReducer
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Portfolio);
 
 /***/ }),
 /* 49 */
@@ -25031,6 +24853,12 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(3);
 
+var _index = __webpack_require__(126);
+
+var _redux = __webpack_require__(37);
+
+var _reactRedux = __webpack_require__(52);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25078,7 +24906,15 @@ var ProtFilter = function (_React$Component) {
     return ProtFilter;
 }(_react2.default.Component);
 
-exports.default = ProtFilter;
+//onClick={this.props.dispatch(makeFilter(item.grp))}
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        actions: (0, _redux.bindActionCreators)(_index.makeFilter, dispatch)
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapDispatchToProps)(ProtFilter);
 
 /***/ }),
 /* 51 */
@@ -25221,7 +25057,7 @@ var _store = __webpack_require__(111);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _index = __webpack_require__(119);
+var _index = __webpack_require__(121);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -25231,6 +25067,7 @@ var _index4 = _interopRequireDefault(_index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//import App from "./ecosystem/appContainer/index";
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRedux.Provider,
   { store: _store2.default },
@@ -25568,8 +25405,8 @@ var _portReducer2 = _interopRequireDefault(_portReducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  "headerData": _headerReducer2.default,
-  "portReducer": _portReducer2.default
+  headerReducer: _headerReducer2.default,
+  portReducer: _portReducer2.default
 });
 
 /***/ }),
@@ -25622,133 +25459,15 @@ function reducer() {
             return Object.assign({}, action.products);
             break;
         case "PORT_FILTER":
-            return Object.assign({}, _lodash2.default.uniqBy(action.products, action.filter));
+            return Object.assign({}, _lodash2.default.find(state, { "grp": action.payload }));
             break;
     }
     return state;
 }
 
 /***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(3);
-
-var _homePage = __webpack_require__(120);
-
-var _homePage2 = _interopRequireDefault(_homePage);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'body' },
-        _react2.default.createElement(_homePage2.default, null)
-      );
-    }
-  }]);
-
-  return App;
-}(_react2.default.Component);
-
-exports.default = App;
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-        value: true
-});
-
-var _reactRedux = __webpack_require__(52);
-
-var _redux = __webpack_require__(37);
-
-var _index = __webpack_require__(121);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _index3 = __webpack_require__(126);
-
-var actions = _interopRequireWildcard(_index3);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function mapReduxStateToReactProps(state) {
-        debugger;
-        return {
-                //propName [react props]: value [from state]   
-                headerData: state.headerData,
-                portData: state.portReducer
-        };
-}
-
-function mapReduxDispatchToReactProps(dispatch) {
-        debugger;
-        return {
-                //prop name
-                //dispatch: dispatch,
-
-                //aternative option 2
-
-                //initProducts: (products) => dispatch(actions.initProducts(products)),
-                //loading: (status) => dispatch(actions.loading(status))
-
-                //alternative options 3
-
-                //map all the actions with dispatch functionalities
-                //create wrappers method for actions
-                //automatically dispatch
-                actions: (0, _redux.bindActionCreators)(actions, dispatch)
-        };
-}
-
-//create container component
-//get store from provider using context
-//subscribe from store
-//unsubscribe
-var containerComponent = (0, _reactRedux.connect)(mapReduxStateToReactProps, mapReduxDispatchToReactProps)(_index2.default);
-
-exports.default = containerComponent;
-
-/***/ }),
+/* 119 */,
+/* 120 */,
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25766,6 +25485,8 @@ var _react = __webpack_require__(0);
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(3);
+
+var _reactRedux = __webpack_require__(52);
 
 var _index = __webpack_require__(46);
 
@@ -25795,6 +25516,10 @@ var _index9 = __webpack_require__(129);
 
 var _index10 = _interopRequireDefault(_index9);
 
+var _redux = __webpack_require__(37);
+
+var _index11 = __webpack_require__(126);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25815,12 +25540,22 @@ var Container = function (_React$Component) {
     }
 
     _createClass(Container, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.props.actions.getNavData("headerApiUrl");
-            this.props.actions.getPortData("portfolioUrl");
-            // this.props.actions.makeFilter("Wordpress");
-            //this.props.actions.makeFilter(this.props.fullData,"wordpress");
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.props.dispatch((0, _index11.getNavData)("headerApiUrl"));
+            this.props.dispatch((0, _index11.getPortData)("portfolioUrl"));
+        }
+    }, {
+        key: 'componentDidCatch',
+        value: function componentDidCatch(error, info) {
+
+            /* Example stack information:
+               in ComponentThatThrows (created by App)
+               in ErrorBoundary (created by App)
+               in div (created by App)
+               in App
+            */
+            logComponentStackToMyService(info.componentStack);
         }
     }, {
         key: 'render',
@@ -25828,6 +25563,7 @@ var Container = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'container' },
+                _react2.default.createElement(_index8.default, null),
                 _react2.default.createElement(_index10.default, null)
             );
         }
@@ -25836,28 +25572,17 @@ var Container = function (_React$Component) {
     return Container;
 }(_react2.default.Component);
 
-exports.default = Container;
-
-
 Container.defaultProps = {};
 
 Container.propTypes = {};
 
-// const mapStateToProps =(state) => {
-//     return {};
-// };
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        actions: (0, _redux.bindActionCreators)(_index11.getNavData, _index11.getPortData, dispatch)
+    };
+};
 
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         loadData:() => {
-//             dispatch(actions.fetchNav)
-//         }
-//     }
-// }
-
-
-// export default connect(mapStateToProps,mapDispatchToProps)(Container);
+exports.default = (0, _reactRedux.connect)(mapDispatchToProps)(Container);
 
 /***/ }),
 /* 122 */
@@ -26288,10 +26013,10 @@ var substr = 'ab'.substr(-1) === 'b'
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.makeFilter = undefined;
 exports.fetchData = fetchData;
 exports.getNavData = getNavData;
 exports.getPortData = getPortData;
-exports.makeFilter = makeFilter;
 
 var _config = __webpack_require__(65);
 
@@ -26335,23 +26060,12 @@ function getPortData(url) {
     };
 }
 
-function makeFilter(filData, grp) {
-    debugger;
-    return function (dispatch) {
-        // // let products = filData.map((item)=>{
-        // //     if(item.grp == grp)
-        // //         return item;
-        // // });
-        // // console.log(products);
-        // let products = _.filter(filData.portfolio.items,(item)=>{
-        //     return item.grp == grp
-        // });
-        // dispatch({
-        //     type: "PORT_FILTER",
-        //     products
-        // });
+var makeFilter = exports.makeFilter = function makeFilter(item) {
+    return {
+        type: "PORT_FILTER",
+        payload: item
     };
-}
+};
 
 /***/ }),
 /* 127 */

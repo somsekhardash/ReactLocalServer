@@ -1,78 +1,83 @@
 import React from 'react';
 import { render } from 'react-dom';
-import MGMInputText from './MGMInputText/index';
-import MGMInputEmail from './MGMInputEmail/index'; 
-import MGMInputPassword from './MGMInputPassword/index'; 
-import MGMInputNumber from './MGMInputNumber/index';
-export default class MainForm extends React.Component {
-    
-    MGMInputValidate(){
-        this.refs.customerName.validate();
-        this.refs.customerEmail.validate();   
-        this.refs.customerPassword.validate();
-        this.refs.customerRePassword.validate();
-        this.refs.customerNumber.validate();
-    }
-    
-    render() {
-        return <div>
-            <MGMInputText
-                label="Name"
-                id="sign-up-name"
-                classNames="sign-up-name"
-                name="customerName"
-                minLength = {5}
-                placeHolder="Name"
-                ref="customerName"
-                maxLength = {10}
-                required
-                validations={{"required":"this is required","minLength":"please provide more then 5 char"}}
-            ></MGMInputText>
-            <MGMInputEmail
-                label="Email"
-                id="sign-up-email"
-                classNames="sign-up-email"
-                name="customerEmail"
-                placeHolder="Email"
-                ref="customerEmail"
-            ></MGMInputEmail>
-            <MGMInputPassword
-                label="Password"
-                id="sign-up-password"
-                classNames="sign-up-password"
-                name="customerPassword"
-                placeHolder="Password"
-                ref="customerPassword"
-                required
-                validations={{"required":"this is required","someError":"this is for additional  Validation"}}
-            ></MGMInputPassword>
-            <MGMInputPassword
-                label="RePassword"
-                id="sign-up-repassword"
-                classNames="sign-up-repassword"
-                name="customerRePassword"
-                placeHolder="RePassword"
-                ref="customerRePassword"
-                someData={this.refs.customerPassword}
-                required
-                validations={{"required":"this is required","someError":"passWord Should Match"}}
-            ></MGMInputPassword>
-            <MGMInputNumber
-             label="Number"
-             id="customerNumber"
-             classNames="customerNumber"
-             name="customerNumber"
-             placeHolder="customer Number"
-             ref="customerNumber"
-             someData={this.refs.customerNumber}
-             required
-             validations={{"required":"this is required"}}
-            ></MGMInputNumber>
+import validate from './formUtility';
 
-            <button onClick={this.MGMInputValidate.bind(this)}>
-                clickME
-            </button>
-        </div>
+export default class MainForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fName: { value: '', errorMessage: '', isValid: true },
+            fPassword: { value: '', errorMessage: '', isValid: true }
+        };
+
+        this.formRule = {
+            fName: {
+                "isValid": true,
+                "errorMessage": this.state.fName.errorMessage,
+                "value": this.state.fName.value,
+                "rules": ["required"]
+            }, fPassword: {
+                "isValid": true,
+                "errorMessage": this.state.fPassword.errorMessage,
+                "value": this.state.fPassword.value,
+                "rules": ["required"]
+            }
+        };
+
+        this.validateForm = this.validateForm.bind(this);
+    }
+
+    handleChangefName(event) {
+        this.setState({ fName: { value: event.target.value, errorMessage: '', isValid: true } });
+    }
+
+    handleChangefPassword(event) {
+        this.setState({ fPassword: { value: event.target.value, errorMessage: '', isValid: true } });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.validateForm(validate(this.formRule));
+    }
+
+    validateForm(resultForm) {
+        debugger;
+        resultForm.forEach(element => {
+            let nodeName = element.fieldName;
+           
+            this.setState({
+                [nodeName]: element
+            });
+
+
+        });
+    }
+
+    render() {
+        return (
+            <form name="test1">
+                <label> Name: </label>
+                <input
+                    type="text"
+                    name="fName"
+                    value={this.state.value1}
+                    onChange={this.handleChangefName.bind(this)} />
+                {!this.state.fName.isValid && <p className="error">{this.state.fName.errorMessage}</p>}
+                <br />
+                <label> Password: </label>
+                <input
+                    type="password"
+                    name="fPassword"
+                    value={this.state.value2}
+                    onChange={this.handleChangefPassword.bind(this)} />
+                {!this.state.fPassword.isValid && <p className="error">{this.state.fPassword.errorMessage}</p>}
+                <br />
+                <button onClick={this.handleSubmit.bind(this)}>
+                    Submit
+                </button>
+            </form>
+        );
+
     }
 
 }

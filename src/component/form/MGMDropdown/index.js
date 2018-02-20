@@ -2,28 +2,20 @@ import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 
-export default class MGMSelectInput extends React.Component {
+export default class MGMDropdown extends React.Component {
     constructor(props) {
         super(props);
         this.isValid = true;
         this.state = {
             errorMessage: '',
-            value: props.value ? props.value : ''
+            open: false,
+            selectedValue:-1,
+            defaultItem: props.defaultItem
         }
+        this._errorMessage = '';
         this.validations = {
         }
-        this._errorMessage='';
         Object.assign(this.validations, this.props.validations);
-    }
-
-    setValue(val) {
-        this.setState({
-            value: val
-        });
-    }
-
-    getValue() {
-        return this.state.value;
     }
 
     validate() {
@@ -37,6 +29,10 @@ export default class MGMSelectInput extends React.Component {
             }
         }
         return {"isValid":this.isValid,"errorMessage":this._errorMessage};
+    }
+
+    customValidator(){
+        return true;
     }
 
     makeValid() {
@@ -55,31 +51,43 @@ export default class MGMSelectInput extends React.Component {
         this.isValid = false;
     }
 
-    handleChange(event) {
-        this.setState({
-            value: event.target.value
-        });
-        this.isValid = true;
-    }
-
     defaultValidator(errorObj) {
         let myKey = Object.keys(errorObj)[0];
         switch (myKey) {
             case "required": {
-                if (!this.state.value && this.props.required) {
+                if (this.state.selectedValue == -1 && this.props.required) {
                     this.makeInvalid(errorObj[myKey]);
                 } else {
                     this.makeValid();
                 }
             }
-            break;
+                break;
             default:
                 return true;
         }
     }
 
-    customValidator(){
-        return true;
+    getSubOptions(items) {
+        return (
+            items.map((item, i) => (
+                <li key={i} onClick={this.selectItem.bind(this,[Object.keys(item)[0],Object.values(item)[0]])} value={Object.keys(item)[0]}>{Object.values(item)[0]}</li>
+            ))
+        );
+    }
+
+    toggleSelectBox(){
+        this.setState({
+            open: !this.state.open
+        })
+    }
+
+    selectItem(item){
+        this.setState({
+            open: !this.state.open,
+            selectedValue: item[0],
+            defaultItem: item[1]
+        });
+        this.isValid = true;
     }
 
     render() {
@@ -89,29 +97,16 @@ export default class MGMSelectInput extends React.Component {
                 className={`${this.props.required ? 'required' : ''} ${this.props.classNames}-label`}
                 aria-required={this.props.required}>{this.props.label}</label>}
 
-            <input
-                type="text"
-                id={this.props.id}
-                name={this.props.name}
-                readOnly={this.props.readonly}
-                required={this.props.required}
-                placeholder={this.props.placeHolder}
-                className={this.props.classNames}
-                value={this.state.value}
-                onChange={this.handleChange.bind(this)}
-            />
-
-            <select name="carlist" form="carform">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
-
+            <div className={this.props.buttonClassName}>
+                <ul className={`${this.props.buttonClassName}-ul`}>
+                    {this.props.defaultItem &&
+                        <li selectedvalue={this.state.selectedValue} onClick={this.toggleSelectBox.bind(this)}><b>{this.state.defaultItem}</b></li>}
+                    {this.state.open && this.getSubOptions(this.props.selectItems)}
+                </ul>
+            </div>
 
             {!this.isValid && <p
                 className="error label"
-                id="sign-up-email-error"
                 generated="true">
                 {this.state.errorMessage}
             </p>}
@@ -119,7 +114,7 @@ export default class MGMSelectInput extends React.Component {
     }
 }
 
-MGMInputText.propTypes = {
+MGMDropdown.propTypes = {
     label: PropTypes.string,
     id: PropTypes.string,
     required: PropTypes.bool,
@@ -133,8 +128,6 @@ MGMInputText.propTypes = {
 };
 
 
-MGMInputText.defaultProps = {
-    maxLength: 5,
-    minLength: 10
+MGMDropdown.defaultProps = {
 }
 

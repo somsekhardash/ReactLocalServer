@@ -5,7 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const fs = require('fs');
 const entryForClientComponents = {};
 const componentFolder = `${process.cwd()}/src/component/organism/`;
-
+const workboxPlugin = require('workbox-webpack-plugin');
 fs.readdirSync(componentFolder).forEach(folder => {
     entryForClientComponents[`global/components/${folder}/index`] = [`${componentFolder}/${folder}/index.js`];
 });
@@ -13,28 +13,14 @@ fs.readdirSync(componentFolder).forEach(folder => {
 const htmlTmplReport = require('eslint/lib/formatters/html');
 let entryForClientBundle = {
     'vendor': ['react', 'react-dom', 'prop-types', 'react-redux', 'redux'],
-    'app': './src/component/index.js'
+    'app': './src/component/index.js',
+    "sw": './src/index.js'
 }
 const entries = Object.assign(entryForClientComponents,entryForClientBundle);
 const config = {
     entry: entries,
     module: {
         rules: [
-            //{
-            //     enforce: 'pre',
-            //     test: /.js?$/,
-            //     exclude: /node_modules|src\/app\/vendor/,
-            //     use: [{
-            //         loader: 'eslint-loader',
-            //         options: {
-            //             ignorePath: '.eslintignore',
-            //             outputReport: {
-            //                 filePath: '../reports/eslint_react.html',
-            //                 formatter: htmlTmplReport
-            //             }
-            //         }
-            //     }]
-            //},
             {
                 test: /\.less$/,
                 use: [{
@@ -73,8 +59,20 @@ const config = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
+        }),
+        new workboxPlugin({
+            // globDirectory: './distProd/',
+            globPatterns: ['**/*.{js,css,html.json}'],
+            swDest: path.join(__dirname, "../", "distProd/service_worker.js"),
+            clientsClaim: true,
+            skipWaiting: true,
+            runtimeCaching: [{
+                urlPattern: /^((http[s]?):\/)?\/?([^:\/\s]*)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/,
+                handler: 'networkFirst'
+            }]           
         })
     ],
+
     externals: {
         pathName: JSON.stringify(require(path.join(__dirname, "../", "pathName.js")))
     }

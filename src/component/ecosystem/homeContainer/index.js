@@ -1,6 +1,6 @@
 import React from 'react';
-import {render} from 'react-dom';
-import {connect} from "react-redux";
+import { render } from 'react-dom';
+import { connect } from "react-redux";
 import Header from './../../organism/header/index.js';
 import Experience from './../../organism/experience/index';
 import HeaderBanner from './../../molecule/headerBanner/index.js';
@@ -15,52 +15,41 @@ import { getNavData, getPortData } from '../../../actions/index';
 require('../../../styles/vender/bootstrap/index.css');
 
 class Container extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-    componentWillMount (){
-            this.props.dispatch(getNavData("headerApiUrl"));
-            this.props.dispatch(getPortData("portfolioUrl"));
-           
-    }
-    componentDidCatch(error, info) {
-        
-        /* Example stack information:
-           in ComponentThatThrows (created by App)
-           in ErrorBoundary (created by App)
-           in div (created by App)
-           in App
-        */
-        logComponentStackToMyService(info.componentStack);
-      }
+    componentWillMount() {
+        this.props.dispatch(getNavData("headerApiUrl"));
+        this.props.dispatch(getPortData("portfolioUrl"));
 
-    render () {
+    }
+
+    render() {
         return <div className="container">
-                    {/* <Header></Header>
-                    <HeaderBanner></HeaderBanner>
-                    <Experience></Experience> */}
-                    
-                    
-                    <Portfolio></Portfolio>
-                    
-                    <MainForm></MainForm>
-            </div>;
+            <Header></Header>
+            <HeaderBanner></HeaderBanner>
+            <Experience></Experience>
+            <Portfolio></Portfolio>
+            {/* <MainForm></MainForm> */}
+        </div>;
     }
 }
-  
-Container.defaultProps = {  
+
+Container.defaultProps = {
 }
 
-Container.propTypes={
+Container.propTypes = {
 }
 
 
 let mapDispatchToProps = (dispatch) => {
     return {
-       actions: bindActionCreators(getNavData,getPortData,dispatch)
+        actions: bindActionCreators(getNavData, getPortData, dispatch)
     }
 }
+
+
 
 export default connect(mapDispatchToProps)(Container);
 

@@ -22,12 +22,16 @@ class Portfolio extends React.Component {
             });
         }
     }
+
+    makeFilter(sads){
+        debugger;
+    }
     
     render() {
         return  <section id="portfolio" className="portfolio section-space-padding">
                     <div className="container">
                     <div className="col-md-2">
-                        <ProtFilter dataFilters={ !!this.props.portData.portfolio && _.uniqBy(this.props.portData.portfolio.items, 'grp')}></ProtFilter>
+                        <ProtFilter makeFilter={this.makeFilter.bind(this)} dataFilters={ !!this.props.portData.portfolio && _.uniqBy(this.props.portData.portfolio.items, 'grp')}></ProtFilter>
                     </div>   
                         {this.makePortData()}
                     </div>

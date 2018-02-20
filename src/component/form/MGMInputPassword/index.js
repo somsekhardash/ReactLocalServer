@@ -12,7 +12,9 @@ export default class MGMInputPassword extends MGMInput {
             "errorMessage": "This is default maxLength Error"
         }
         this.state = {
-            type: true
+            type: true,
+            value: '',
+            showFlag: false
         };
         Object.assign(this.validations, this.props.validations);
         this.cPattern = /^[ A-Za-z0-9.\-\/+=_ !$\*?@#,']*$/;
@@ -29,6 +31,9 @@ export default class MGMInputPassword extends MGMInput {
             value: event.target.value
         });
         this.isValid = true;
+        if (event.target.value.length > 0){
+            this.showFlag = true;
+        }
         if (event.target.value.length > 0 && !!this.props.someData && this.props.someData.getValue() !== event.target.value) {
             this.makeInvalid("password are not matching");
         }
@@ -59,7 +64,7 @@ export default class MGMInputPassword extends MGMInput {
                 onChange={this.handleChange.bind(this)}
             />
 
-            <span onClick={this.showPassword.bind(this)}>#</span>
+            {this.showFlag && <span onClick={this.showPassword.bind(this)}>#</span>}
 
             {!this.isValid && <p
                 className="error label"

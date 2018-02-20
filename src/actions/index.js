@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 function fetchJson(url, options) {
     return window.fetch(url, options)
-        .then ( response => {
+        .then(response => {
             return response.json();
         })
 }
@@ -13,8 +13,8 @@ export function fetchData(url) {
 }
 
 export function getNavData(url) {
-    return function(dispatch) {
-        fetchData(url).then ( products => {
+    return function (dispatch) {
+        fetchData(url).then(products => {
             dispatch({
                 type: "NAV_INIT",
                 products
@@ -24,8 +24,8 @@ export function getNavData(url) {
 }
 
 export function getPortData(url) {
-    return function(dispatch) {
-        fetchData(url).then ( products => {
+    return function (dispatch) {
+        fetchData(url).then(products => {
             dispatch({
                 type: "PORT_INIT",
                 products
@@ -34,9 +34,3 @@ export function getPortData(url) {
     }
 }
 
-
-export const makeFilter = (item) => ({
-    type: "PORT_FILTER",
-    payload: item
-});
-  

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { connect } from "react-redux";
 import Header from './../../organism/header/index.js';
 import Experience from './../../organism/experience/index';
-import HeaderBanner from './../../molecule/headerBanner/index.js';
+import HeaderBanner from './../../ssrMolecule/headerBanner/index.js';
 import config from './../../../config.js';
 import PropTypes from 'prop-types';
 import Portfolio from './../../organism/portfolio/index';
@@ -22,7 +22,6 @@ class Container extends React.Component {
     componentWillMount() {
         this.props.dispatch(getNavData("headerApiUrl"));
         this.props.dispatch(getPortData("portfolioUrl"));
-
     }
 
     render() {

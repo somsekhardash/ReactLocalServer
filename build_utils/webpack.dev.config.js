@@ -6,7 +6,8 @@ const config = {
     devtool: "source-map",
     output: {
         path: path.join(__dirname, "../", "distDev"),
-        filename: '[name].js'
+        filename: '[name].bundle.js',
+        chunkFilename: "[id].bundle.js"
     },
     plugins: [ 
         new webpack.LoaderOptionsPlugin({

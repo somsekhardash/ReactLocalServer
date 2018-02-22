@@ -1,11 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const fs = require('fs');
 const entryForClientComponents = {};
 const componentFolder = `${process.cwd()}/src/component/organism/`;
 const workboxPlugin = require('workbox-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 fs.readdirSync(componentFolder).forEach(folder => {
     entryForClientComponents[`global/components/${folder}/index`] = [`${componentFolder}/${folder}/index.js`];
 });
@@ -16,7 +16,7 @@ let entryForClientBundle = {
     'app': './src/component/index.js',
     "sw": './src/index.js'
 }
-const entries = Object.assign(entryForClientComponents,entryForClientBundle);
+const entries = Object.assign(entryForClientComponents, entryForClientBundle);
 const config = {
     entry: entries,
     module: {
@@ -34,11 +34,21 @@ const config = {
 
             {
                 test: /\.js?$/,
-                loader: 'babel-loader',
                 exclude: /node_modules/,
-                query: {
-                    presets: ["es2015", "react"]
-                }
+                use: [{
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            ["env", {
+                                "targets": {
+                                    "browsers": ["last 2 versions", "safari >= 7"]
+                                },
+                                "modules": false
+                            }]
+                        ]
+
+                    }
+                }]
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf|svg)$/,
@@ -53,23 +63,20 @@ const config = {
             }
         ]
     },
-
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
         }),
-        new workboxPlugin({
-            // globDirectory: './distProd/',
-            globPatterns: ['**/*.{js,css,html.json}'],
-            swDest: path.join(__dirname, "../", "distProd/service_worker.js"),
-            clientsClaim: true,
-            skipWaiting: true,
-            runtimeCaching: [{
-                urlPattern: /^((http[s]?):\/)?\/?([^:\/\s]*)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/,
-                handler: 'networkFirst'
-            }]           
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            filename: "vendor_chunk.js",
+            minChunks: Infinity
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "manifest",
+            minChunks: Infinity
         })
     ],
 

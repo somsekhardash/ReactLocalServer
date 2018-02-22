@@ -5,9 +5,10 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const config = {
     output: {
         path: path.join(__dirname, "../", "distProd"),
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: "/"
     },
-    plugins: [ 
+    plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.LoaderOptionsPlugin({
@@ -21,15 +22,6 @@ const config = {
                 warnings: false
             },
             comments: false
-        }),
-        new ExtractTextPlugin("styles.css"),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
-            filename: "vendor_chunk.js"
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "commons",
-            filename: "commons_chunk.js"
         }),
         new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true }),
         new CleanWebpackPlugin(["distProd"], { root: path.join(__dirname, "../") })

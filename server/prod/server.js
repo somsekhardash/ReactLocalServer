@@ -19,6 +19,10 @@ app.get('/images/bg/profile.png', function (req, res) {
     var data = require('../../src/images/profile.png');
     res.send(data);
 })
+app.get('/manifest.json', function (req, res) {
+    var data = require('./../../src/assects/manifest.json');
+    res.send(data);
+})
 
 
 

@@ -27,7 +27,7 @@ class Container extends React.Component {
     render() {
         return <div className="container">
             <Header></Header>
-            <HeaderBanner></HeaderBanner>
+            {/* <HeaderBanner></HeaderBanner> */}
             <Experience></Experience>
             <Portfolio></Portfolio>
             {/* <MainForm></MainForm> */}

@@ -47,7 +47,7 @@ export default class HeaderBanner extends React.Component {
          
          <div className="col-md-5 col-sm-6">
             <div className="me-image">
-              {/* <img src="https://demos.onepagelove.com/html/webres/images/bg/profile.png" alt=""/> */}
+              <img src="https://demos.onepagelove.com/html/webres/images/bg/profile.png" alt=""/>
           </div>
         </div>
       </div>

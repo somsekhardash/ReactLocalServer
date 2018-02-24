@@ -6,6 +6,10 @@ import _ from 'lodash';
 import FlipMove from 'react-flip-move';
 import {connect} from "react-redux";
 
+require('./../../../styles/component/footer/index.scss');
+
+// require('./../../../styles/component/header/index.css');
+
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);

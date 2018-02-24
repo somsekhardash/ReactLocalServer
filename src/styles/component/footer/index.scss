@@ -1,0 +1,88 @@
+@import './../scss.global.scss';
+@import './../overRide.scss';
+.table {
+    margin-bottom: 0;
+    a {
+      color: #fff;
+    }
+    > tbody > tr > td {
+      padding: 15px;
+      border: 3px solid #e4e4e4;
+    }
+    tr > td {
+      padding: 11px 13px;
+    }
+  }
+  
+  tr {
+    &:first-child > td {
+      border-top: 0;
+    }
+    > td {
+      &:first-child {
+        background-color: #fff;
+        font-weight: 500;
+        font-size: 13px;
+        color: #888;
+        width: 140px;
+      }
+      &:nth-child(2) {
+        font-weight: 500;
+        color: $som;
+        background: $primary-color;
+      }
+    }
+  }
+  
+  a {
+    background-color: transparent;
+    &:active, &:hover {
+      outline: 0;
+    }
+  }
+  
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  
+  td {
+    padding: 0;
+  }
+  
+  @media print {
+    tr {
+      page-break-inside: avoid;
+    }
+    .table {
+      border-collapse: collapse !important;
+      td {
+        background-color: #fff !important;
+      }
+    }
+  }
+  
+  table {
+    background-color: transparent;
+  }
+  
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    > tbody > tr > td {
+      padding: 8px;
+      line-height: 1.42857143;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .table-responsive > .table {
+      margin-bottom: 0;
+      > tbody > tr > td {
+        white-space: nowrap;
+      }
+    }
+  }

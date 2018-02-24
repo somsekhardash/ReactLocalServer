@@ -1,1 +1,1 @@
-node ../server/prod/server.js
+babel-node ../server/prod/server.js

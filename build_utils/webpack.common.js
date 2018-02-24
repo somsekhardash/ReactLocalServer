@@ -19,17 +19,25 @@ let entryForClientBundle = {
 const entries = Object.assign(entryForClientComponents, entryForClientBundle);
 const config = {
     entry: entries,
+    resolve: {
+        extensions: ['.js', '.jsx', '.scss', 'css', 'png']
+    },
     module: {
         rules: [
             {
-                test: /\.less$/,
-                use: [{
-                    loader: "style-loader" // creates style nodes from JS strings
-                }, {
-                    loader: "css-loader" // translates CSS into CommonJS
-                }, {
-                    loader: "less-loader" // compiles Less to CSS
-                }]
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: "css-loader",
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            data: "$env: "+ process.env.NODE_THEME + ";"
+                        }
+                    }]
+                })
             },
 
             {
@@ -77,7 +85,8 @@ const config = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "manifest",
             minChunks: Infinity
-        })
+        }),
+        new ExtractTextPlugin({ filename: '[name].css', disable: false, allChunks: true })
     ],
 
     externals: {

@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dev</title>   
     <link rel="manifest" href="/manifest.json">
-    <!-- <link rel="stylesheet" media="all" href="app.min.css"> -->
+    <link rel="stylesheet" media="all" href="global/components/header/index.css">
+    <link rel="stylesheet" media="all" href="global/components/portfolio/index.css">
+    <link rel="stylesheet" media="all" href="app.min.css">
 </head>
 
 <body>
+    <div id="HeaderBanner" data-component="HeaderBanner"></div>
     <div id="app" data-component="App"></div>
-    <div id="blogging" data-component="Blogging"></div>
     <script src="manifest.js"></script>
     <script src="vendor_chunk.js"></script>
     <script src="app.js"></script>

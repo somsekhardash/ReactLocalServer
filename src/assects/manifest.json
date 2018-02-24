@@ -3,18 +3,13 @@
   "name": "Somsekhar Dash",
   "icons": [
     {
-      "src": "launcher-icon-2x.png",
+      "src": "//az813057.vo.msecnd.net/images/favicon-96.cabc29b.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "launcher-icon-3x.png",
+      "src": "//cdn.mdn.mozilla.net/static/img/favicon144.e7e21ca263ca.png",
       "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "launcher-icon-4x.png",
-      "sizes": "192x192",
       "type": "image/png"
     }
   ],

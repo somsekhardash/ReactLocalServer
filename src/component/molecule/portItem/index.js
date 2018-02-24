@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-//import * as actions from './../../../actions/index';
 
 export default class ProtItem extends React.Component {
     constructor(props) {

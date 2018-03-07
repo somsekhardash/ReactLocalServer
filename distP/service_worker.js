@@ -20,55 +20,55 @@ importScripts('workbox-sw.prod.v2.1.2.js');
 const fileManifest = [
   {
     "url": "/app.css",
-    "revision": "cffb4222446688266ef67b7715a8cd18"
+    "revision": "a1797f05d9f5b759e0d8e784be9d1f19"
   },
   {
     "url": "/app.js",
-    "revision": "487d6380a6efe43b47739736f2c1ac98"
+    "revision": "1146d7577586e778e616689ee8eba95b"
   },
   {
     "url": "/app.min.css",
-    "revision": "cffb4222446688266ef67b7715a8cd18"
+    "revision": "990ca85e911ab72a411e4ade9e5bdb7e"
   },
   {
     "url": "/global/components/experience/index.js",
-    "revision": "80d5ac8eef909ac1d60d0871940708ef"
+    "revision": "7f3e2a9727571be7e6d364ff129ad181"
   },
   {
     "url": "/global/components/header/index.css",
-    "revision": "cabb5322739b76d70fc378810116da89"
+    "revision": "e99b51f74bac8655a8481d89aea835cc"
   },
   {
     "url": "/global/components/header/index.js",
-    "revision": "977e6dfe83af0b8b6d4dfc4118e45388"
+    "revision": "56ff8de0ac12322f754da44b53f1cb7b"
   },
   {
     "url": "/global/components/header/index.min.css",
-    "revision": "cabb5322739b76d70fc378810116da89"
+    "revision": "16d89a4bf483c1024939d7448cdd2e6c"
   },
   {
     "url": "/global/components/portfolio/index.css",
-    "revision": "e174d3573f7de71f87105fff72cb02d4"
+    "revision": "3530fa9033b2604ccb60e6d985061c65"
   },
   {
     "url": "/global/components/portfolio/index.js",
-    "revision": "11e9a259ae1540774cd8bb02ad8e0523"
+    "revision": "8c83a6a807bf261af24dcd0f656b26ea"
   },
   {
     "url": "/global/components/portfolio/index.min.css",
-    "revision": "e174d3573f7de71f87105fff72cb02d4"
+    "revision": "bd2ffc8daf19d290e691654503632b84"
   },
   {
     "url": "/manifest.js",
-    "revision": "90be3c0431ab414ecd2a2800e10a4284"
+    "revision": "c5441b1ade5ed9a7b219eca98feff836"
   },
   {
     "url": "/sw.js",
-    "revision": "808b0b6811f34bb2ed6afdd3a0b3d03c"
+    "revision": "f9e3d4903a1a89e8995754bba9e490e7"
   },
   {
     "url": "/vendor_chunk.js",
-    "revision": "8242f85e96cb91a839dd698080704851"
+    "revision": "445037ace761cb0c3ba512c8625fd6ce"
   }
 ];
 

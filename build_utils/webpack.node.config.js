@@ -7,17 +7,13 @@ const IS_PRODUCTION = process.env.NODE_ENV ? true : false;
 const nodeBuildPath = './../distSSR/';
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const entryForServerJS = {
-    'common/index': path.resolve(__dirname, './../server/node/server.js')
-}
-
 const componentFolder = `${process.cwd()}/src/component/ssrMolecule/`;
 const entryForServerComponents = {};
 
 fs.readdirSync(componentFolder).forEach(folder => {
     entryForServerComponents[`components/${ folder }/index`] = [`${ componentFolder }/${ folder }/index.js`];
 });
-const entries = Object.assign(entryForServerJS, entryForServerComponents);
+const entries = Object.assign(entryForServerComponents);
 
 let nodeConfig = {
     entry: entries,

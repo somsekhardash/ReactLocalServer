@@ -6,12 +6,10 @@ export default class ProtItem extends React.Component {
         super(props);
     }
     itemClicked(){
-        this.props.actions.makeFilter(this.props.fullData,"wordpress");
+        alert("this");
+        this.props.actions.makeFilter("wordpress");
     }
     render() {
-        // function itemClicked(){
-        //     actions.makeFilter(this.props.fullData,"Wordpress");
-        // };
         return  <div className={`col-md-4 col-sm-6 col-xs-12 mix ${this.props.grp}`}>
                     <div className="item">
                         <a href={this.props.link} className="portfolio-popup" title="Project Title">

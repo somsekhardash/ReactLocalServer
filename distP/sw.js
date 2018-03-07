@@ -1,1 +1,44 @@
-webpackJsonp([5],{127:function(e,n,t){"use strict";var r=t(128);(0,function(e){return e&&e.__esModule?e:{default:e}}(r).default)()},128:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r=function(){"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("./service_worker.js").then(function(e){console.log("SW registered: ",e)}).catch(function(e){console.log("SW registration failed: ",e)})})};n.default=r}},[127]);
+webpackJsonp([5],{
+
+/***/ 127:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _serviceWorker = __webpack_require__(128);
+
+var _serviceWorker2 = _interopRequireDefault(_serviceWorker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _serviceWorker2.default)();
+
+/***/ }),
+
+/***/ 128:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var serviceworkerInit = function serviceworkerInit() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('./service_worker.js').then(function (registration) {
+                console.log('SW registered: ', registration);
+            }).catch(function (registrationError) {
+                console.log('SW registration failed: ', registrationError);
+            });
+        });
+    }
+};
+exports.default = serviceworkerInit;
+
+/***/ })
+
+},[127]);
+//# sourceMappingURL=sw.js.map

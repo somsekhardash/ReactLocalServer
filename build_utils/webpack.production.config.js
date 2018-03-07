@@ -10,21 +10,20 @@ const config = {
         publicPath: "/"
     },
     plugins: [
-         
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false,
+            minimize: false,
+            debug: true,
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            compress: {
-                dead_code: true,
-                warnings: false
-            },
-            comments: false
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     minimize: true,
+        //     compress: {
+        //         dead_code: true,
+        //         warnings: false
+        //     },
+        //     comments: false
+        // }),
         new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true }),
         new CleanWebpackPlugin(["distP"], { root: path.join(__dirname, "../") }),
         new workboxPlugin({

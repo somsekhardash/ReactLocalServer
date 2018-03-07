@@ -13,15 +13,6 @@ const config = {
         new webpack.LoaderOptionsPlugin({
             minimize: false
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
-            filename: "vendor_chunk.js"
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "commons",
-            filename: "commons_chunk.js"
-        }),
-        //new ExtractTextPlugin("styles.css"),
         new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true }),
         new CleanWebpackPlugin(["distDev"], { root: path.join(__dirname, "../") })
     ]

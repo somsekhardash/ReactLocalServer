@@ -1,14 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { makeFilter } from '../../../actions/index';
 
 export default class ProtFilter extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    makeFilter(grp){
-        this.props.makeFilter(grp);
+    makeFilter(event) {
+        this.props.makeFilter(event.target.dataset.filter);
     }
 
     getDataFilters() {
@@ -17,8 +16,8 @@ export default class ProtFilter extends React.Component {
                 return <li
                     className="filter"
                     key={i}
-                    data-filter={item.grp} 
-                    onClick={this.makeFilter(item.grp)}>
+                    data-filter={item.grp}
+                    onClick={this.makeFilter.bind(this)}>
                     {item.grp}
                 </li>
             });
@@ -27,7 +26,10 @@ export default class ProtFilter extends React.Component {
 
     render() {
         return <ul className="portfolio">
-            <li className="filter active" data-filter="all">all</li>
+            <li 
+                className="filter active" 
+                data-filter="all" 
+                onClick={this.makeFilter.bind(this)}>all</li>
             {this.getDataFilters()}
         </ul>
 

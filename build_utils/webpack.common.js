@@ -19,6 +19,7 @@ let entryForClientBundle = {
 const entries = Object.assign(entryForClientComponents, entryForClientBundle);
 const config = {
     entry: entries,
+    devtool: "source-map",
     resolve: {
         extensions: ['.js', '.jsx', '.scss', 'css', 'png']
     },
@@ -32,10 +33,7 @@ const config = {
                         loader: "css-loader",
                     },
                     {
-                        loader: "sass-loader",
-                        options: {
-                            data: "$env: "+ process.env.NODE_THEME + ";"
-                        }
+                        loader: "sass-loader"
                     }]
                 })
             },

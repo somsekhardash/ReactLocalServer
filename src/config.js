@@ -1,4 +1,4 @@
-let headerApiUrl,apiBaseUrl,headerSec,portfolioUrl;
+let headerApiUrl,apiBaseUrl,headerSec,portfolioUrl,serviceUrl;
 const path = require("path");
 import * as pathName from "pathName";
 
@@ -7,6 +7,7 @@ import * as pathName from "pathName";
     headerApiUrl=`${apiBaseUrl}/assects/json/header.json`;
     headerSec=`${apiBaseUrl}/assects/json/header_section.json`;
     portfolioUrl = `${apiBaseUrl}/assects/json/portfolio.json`;
+    serviceUrl= `${apiBaseUrl}/assects/json/service.json`;
 // }
 
 // if(process.env.NODE_ENV=='production'){
@@ -18,4 +19,5 @@ import * as pathName from "pathName";
 
 module.exports = {"headerApiUrl": headerApiUrl,
                     "apiBaseUrl" : apiBaseUrl,
-                    "portfolioUrl": portfolioUrl  }
+                    "portfolioUrl": portfolioUrl,
+                    "serviceUrl":serviceUrl  }

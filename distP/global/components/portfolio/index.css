@@ -77,6 +77,6 @@ table {
 
 .example-leave.example-leave-active {
   opacity: 0.5;
-  transition: opacity 500ms ease-in; }
+  transition: opacity 5 00ms ease-in; }
 
 /*# sourceMappingURL=index.css.map*/

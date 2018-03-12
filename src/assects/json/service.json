@@ -1,0 +1,30 @@
+{
+    "service": {
+        "items": [
+            {
+                "logo": "smartphone",
+                "title": "Mobile Design"
+            },
+            {
+                "logo": "tablet",
+                "title": "Tablet Design"
+            },
+            {
+                "logo": "fa-code",
+                "title": "Clean Code"
+            },
+            {
+                "logo": "icon-support",
+                "title": "Full Support"
+            },
+            {
+                "logo": "fa-html5",
+                "title": "HTML5 Design"
+            },
+            {
+                "logo": "icon-bulb",
+                "title": "CSS3 Design"
+            }
+        ]
+    }
+}

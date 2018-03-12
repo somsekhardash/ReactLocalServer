@@ -41,4 +41,4 @@ app.get('/manifest.json', function (req, res) {
 })
 
 
-app.listen(5001, () => console.log('Example app listening on port dev 5001!'));
+app.listen(5001, () => console.log('This is local - 5001'));

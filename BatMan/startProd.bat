@@ -1,1 +1,1 @@
-babel-node ../server/prod/server.js
+npm run start

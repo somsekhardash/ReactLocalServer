@@ -27,6 +27,10 @@ app.get('/assects/json/portfolio.json', function (req, res) {
     var data = require('../../src/assects/json/portfolio.json');
     res.send(data); 
 })
+app.get('/assects/json/service.json', function (req, res) {
+    var data = require('../../src/assects/json/service.json');
+    res.send(data); 
+})
 app.get('/images/bg/profile.png', function (req, res) {
     var data = require('../../src/images/profile.png');
     res.send(data);
@@ -38,4 +42,5 @@ app.get('/manifest.json', function (req, res) {
 
 
 
-app.listen(5001, () => console.log('Example app listening on port 5001!'));
+
+app.listen(5001, () => console.log('This is prod -  5001!'));

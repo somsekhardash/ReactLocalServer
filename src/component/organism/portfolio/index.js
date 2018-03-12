@@ -3,16 +3,11 @@ import { render } from 'react-dom';
 import ProtItem from './../../molecule/portItem/index';
 import ProtFilter from './../../molecule/portFilter/index';
 import _ from 'lodash';
-import FlipMove from 'react-flip-move';
 import {connect} from "react-redux";
-
 import SectionTitle from './../../molecule/sectionTitle/index';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 require('./../../../styles/component/footer/index.scss');
  
-// require('./../../../styles/component/header/index.css');
-
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
@@ -78,6 +73,9 @@ class Portfolio extends React.Component {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="text-center margin-top-50">
+                        <a className="button button-style button-style-dark button-style-color-2 smoth-scroll" href="#contact">Hire Me!</a>
                     </div>
                 </section>
     }

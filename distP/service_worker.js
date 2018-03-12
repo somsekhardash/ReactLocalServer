@@ -20,19 +20,19 @@ importScripts('workbox-sw.prod.v2.1.2.js');
 const fileManifest = [
   {
     "url": "/app.css",
-    "revision": "10ca0d7958289e863c6f084da7e02c7a"
+    "revision": "1fbb2b119849b2efe698047f0e7f2a6f"
   },
   {
     "url": "/app.js",
-    "revision": "0fedc840c62c789f801b4e93f3dd8ef4"
+    "revision": "bd219f6bc775d3c428b97a67b7cf8203"
   },
   {
     "url": "/app.min.css",
-    "revision": "1131a6062d8cdf4f61ae2b781dd0b454"
+    "revision": "39e0e7ed2119233ebf059ae19eabc58b"
   },
   {
     "url": "/global/components/experience/index.js",
-    "revision": "7f3e2a9727571be7e6d364ff129ad181"
+    "revision": "84332630fed4a103489e5a16cd996432"
   },
   {
     "url": "/global/components/header/index.css",
@@ -40,7 +40,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/header/index.js",
-    "revision": "56ff8de0ac12322f754da44b53f1cb7b"
+    "revision": "fc631e1b00914bf50d60686bdad73714"
   },
   {
     "url": "/global/components/header/index.min.css",
@@ -48,27 +48,51 @@ const fileManifest = [
   },
   {
     "url": "/global/components/portfolio/index.css",
-    "revision": "ff834b7a199dc2ab4b62be64ceae646b"
+    "revision": "9530a035bd88aa51199f40e3087a25fd"
   },
   {
     "url": "/global/components/portfolio/index.js",
-    "revision": "a7a027d836ab166ec6cf3beaf5ec197c"
+    "revision": "29ea69c20ea9c9713a9cb36ba8460fbc"
   },
   {
     "url": "/global/components/portfolio/index.min.css",
-    "revision": "1155181ab6c8670594b3c35adad0b751"
+    "revision": "b77cc98005cfc41478bae4616374cec3"
+  },
+  {
+    "url": "/global/components/services/index.css",
+    "revision": "3a4c2bd633cd4b8851e0ec28f4c9908a"
+  },
+  {
+    "url": "/global/components/services/index.js",
+    "revision": "20de80a74822617dd4bc2e83c5fa1a18"
+  },
+  {
+    "url": "/global/components/services/index.min.css",
+    "revision": "488d01b88437d2ac84f3a2f696a574bc"
+  },
+  {
+    "url": "/global/components/testimonials/index.css",
+    "revision": "3a4c2bd633cd4b8851e0ec28f4c9908a"
+  },
+  {
+    "url": "/global/components/testimonials/index.js",
+    "revision": "11d29b77073e5163c3f5988c85aaf082"
+  },
+  {
+    "url": "/global/components/testimonials/index.min.css",
+    "revision": "488d01b88437d2ac84f3a2f696a574bc"
   },
   {
     "url": "/manifest.js",
-    "revision": "c5441b1ade5ed9a7b219eca98feff836"
+    "revision": "090b691c9b5066bbabf960c8ce92cbef"
   },
   {
     "url": "/sw.js",
-    "revision": "f9e3d4903a1a89e8995754bba9e490e7"
+    "revision": "6bdccfd981ee7a060bc6c97077493b30"
   },
   {
     "url": "/vendor_chunk.js",
-    "revision": "445037ace761cb0c3ba512c8625fd6ce"
+    "revision": "cd4b9ef98c89400757be0d9f3980d69a"
   }
 ];
 

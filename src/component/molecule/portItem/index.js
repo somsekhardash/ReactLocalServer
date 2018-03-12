@@ -6,7 +6,6 @@ export default class ProtItem extends React.Component {
         super(props);
     }
     itemClicked(){
-        alert("this");
         this.props.actions.makeFilter("wordpress");
     }
     render() {

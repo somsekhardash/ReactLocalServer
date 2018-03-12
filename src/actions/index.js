@@ -13,7 +13,6 @@ export function fetchData(url) {
 }
 
 export function getNavData(url) {
-    console.log(url);
     return function (dispatch) {
         fetchData(url).then(products => {
             dispatch({
@@ -25,12 +24,23 @@ export function getNavData(url) {
 }
 
 export function getPortData(url) {
-    console.log(url);
     return function (dispatch) {
         fetchData(url).then(products => {
             dispatch({
                 type: "PORT_INIT",
                 products
+            });
+        })
+    }
+}
+
+export function getServiceData(url) {
+    return function (dispatch) {
+        fetchData(url).then(services => {
+            console.log(services);
+            dispatch({
+                type: "SERV_INIT",
+                services
             });
         })
     }

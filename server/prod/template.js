@@ -16,6 +16,7 @@ export default ({ body, title }) => `
             <script src="vendor_chunk.js"></script>
             <script src="app.js"></script>
             <script src="sw.js"></script>
+           
         </body>
     </html>
 `;

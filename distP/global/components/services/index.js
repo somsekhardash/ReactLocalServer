@@ -67,74 +67,11 @@ exports.default = SectionTitle;
 
 /***/ }),
 
-/***/ 122:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(67);
 
-
-/***/ }),
-
-/***/ 150:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ServiceItem = function ServiceItem(_ref) {
-    var item = _ref.item;
-
-    return _react2.default.createElement(
-        'div',
-        { className: 'col-md-4 col-sm-6' },
-        _react2.default.createElement(
-            'div',
-            { className: 'services-detail' },
-            _react2.default.createElement('i', { className: 'icon-screen-' + item.logo + ' color-1' }),
-            _react2.default.createElement(
-                'h3',
-                null,
-                item.title
-            )
-        )
-    );
-};
-
-ServiceItem.propTypes = {
-    item: _react2.default.propTypes
-};
-exports.default = ServiceItem;
-
-// import React from 'react';
-// import { render } from 'react-dom';
-
-// export default class SectionTitle extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-//     render() {
-//         return  <div className="section-title">
-//             <h2>{this.props.title}</h2>
-//             <div className="divider dark">
-//             <i className="icon-graduation"></i>
-//             </div>
-//             <p>{this.props.desc}</p>
-//         </div>
-
-//     }
-// }
 
 /***/ }),
 
@@ -169,7 +106,7 @@ var _index2 = _interopRequireDefault(_index);
 
 var _reactRedux = __webpack_require__(14);
 
-var _index3 = __webpack_require__(150);
+var _index3 = __webpack_require__(68);
 
 var _index4 = _interopRequireDefault(_index3);
 
@@ -249,7 +186,70 @@ var mapStateToProps = function mapStateToProps(state) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Services);
 
+/***/ }),
+
+/***/ 68:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ServiceItem = function ServiceItem(_ref) {
+    var item = _ref.item;
+
+    return _react2.default.createElement(
+        'div',
+        { className: 'col-md-4 col-sm-6' },
+        _react2.default.createElement(
+            'div',
+            { className: 'services-detail' },
+            _react2.default.createElement('i', { className: 'icon-screen-' + item.logo + ' color-1' }),
+            _react2.default.createElement(
+                'h3',
+                null,
+                item.title
+            )
+        )
+    );
+};
+
+ServiceItem.propTypes = {
+    item: _react2.default.propTypes
+};
+exports.default = ServiceItem;
+
+// import React from 'react';
+// import { render } from 'react-dom';
+
+// export default class SectionTitle extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+//     render() {
+//         return  <div className="section-title">
+//             <h2>{this.props.title}</h2>
+//             <div className="divider dark">
+//             <i className="icon-graduation"></i>
+//             </div>
+//             <p>{this.props.desc}</p>
+//         </div>
+
+//     }
+// }
+
 /***/ })
 
-},[122]);
+},[123]);
 //# sourceMappingURL=index.js.map

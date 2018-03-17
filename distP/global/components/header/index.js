@@ -6085,12 +6085,13 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(Header);
 /* 92 */,
 /* 93 */,
 /* 94 */,
-/* 95 */
+/* 95 */,
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(46);
 
 
 /***/ })
-],[95]);
+],[96]);
 //# sourceMappingURL=index.js.map

@@ -67,10 +67,10 @@ exports.default = SectionTitle;
 
 /***/ }),
 
-/***/ 123:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(68);
+module.exports = __webpack_require__(69);
 
 
 /***/ }),
@@ -82,7 +82,7 @@ module.exports = __webpack_require__(68);
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -108,7 +108,7 @@ var _index = __webpack_require__(10);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _reactOwlCarousel = __webpack_require__(69);
+var _reactOwlCarousel = __webpack_require__(70);
 
 var _reactOwlCarousel2 = _interopRequireDefault(_reactOwlCarousel);
 
@@ -262,7 +262,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(Testimonials);
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -483,5 +483,5 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ })
 
-},[123]);
+},[124]);
 //# sourceMappingURL=index.js.map

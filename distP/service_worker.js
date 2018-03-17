@@ -24,7 +24,7 @@ const fileManifest = [
   },
   {
     "url": "/app.js",
-    "revision": "bd219f6bc775d3c428b97a67b7cf8203"
+    "revision": "6e412ee14c63127fd896f7f2293b1849"
   },
   {
     "url": "/app.min.css",
@@ -32,7 +32,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/experience/index.js",
-    "revision": "84332630fed4a103489e5a16cd996432"
+    "revision": "60837892543d1d06884a5604a2e1ceb8"
   },
   {
     "url": "/global/components/header/index.css",
@@ -40,7 +40,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/header/index.js",
-    "revision": "fc631e1b00914bf50d60686bdad73714"
+    "revision": "bae63cc11c0c999da32f0fc94229e304"
   },
   {
     "url": "/global/components/header/index.min.css",
@@ -52,7 +52,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/portfolio/index.js",
-    "revision": "29ea69c20ea9c9713a9cb36ba8460fbc"
+    "revision": "8aa2a73fac3dcfb2aaf817ce5118698b"
   },
   {
     "url": "/global/components/portfolio/index.min.css",
@@ -64,7 +64,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/services/index.js",
-    "revision": "20de80a74822617dd4bc2e83c5fa1a18"
+    "revision": "4f251f2f4c747568b5e7010b2b96fd33"
   },
   {
     "url": "/global/components/services/index.min.css",
@@ -76,7 +76,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/testimonials/index.js",
-    "revision": "11d29b77073e5163c3f5988c85aaf082"
+    "revision": "88337fd3a7fd0a4af7f87421d5fc7810"
   },
   {
     "url": "/global/components/testimonials/index.min.css",
@@ -88,11 +88,11 @@ const fileManifest = [
   },
   {
     "url": "/sw.js",
-    "revision": "6bdccfd981ee7a060bc6c97077493b30"
+    "revision": "34a1f98c82e68302d289e0ddea5826e9"
   },
   {
     "url": "/vendor_chunk.js",
-    "revision": "cd4b9ef98c89400757be0d9f3980d69a"
+    "revision": "23637cd14411c2cb5112cf88cb3af610"
   }
 ];
 

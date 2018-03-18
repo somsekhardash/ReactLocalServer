@@ -1,41 +1,49 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
+import HeaderBanner from './../../ssrMolecule/headerBanner/index.js';
 import Header from './../../organism/header/index.js';
 import Experience from './../../organism/experience/index';
-import HeaderBanner from './../../ssrMolecule/headerBanner/index.js';
-import config from './../../../config.js';
-import PropTypes from 'prop-types';
 import Portfolio from './../../organism/portfolio/index';
 import Testimonials from './../../organism/testimonials/index';
-import MainForm from './../../form/index';
 import Services from './../../organism/services/index';
-import { bindActionCreators } from 'redux';
-import { getNavData, getPortData,getServiceData } from '../../../actions/index';
+
+import {headerStoreObj} from './../../stores/header';
+
+import MainForm from './../../form/index';
 
 
 require('../../../styles/vender/bootstrap/index.css');
 
-class Container extends React.Component {
+export default class Container extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
-        this.props.dispatch(getNavData("headerApiUrl"));
-        this.props.dispatch(getPortData("portfolioUrl"));
-        this.props.dispatch(getServiceData("serviceUrl"));
+        // this.props.dispatch(getNavData("headerApiUrl"));
+        // this.props.dispatch(getPortData("portfolioUrl"));
+        // this.props.dispatch(getServiceData("serviceUrl"));
+        console.log(headerStoreObj);
+        headerStoreObj.getNavData();
+        console.log(headerStoreObj);
+        debugger;
+        
     }
 
     render() {
+        console.log(headerStoreObj);
         return <div className="container">
-            <Header></Header>
+            <h2>som </h2>
+            {/* <Header appState={appState}></Header> */}
             {/* <HeaderBanner></HeaderBanner> -comes from ssr*/}
-            <Experience></Experience>
+            {/* <Experience></Experience>
             <Portfolio></Portfolio>
             <Testimonials></Testimonials>
-            <Services></Services>
+            <Services></Services> */}
             {/* <MainForm></MainForm> */}
+            {/* <h2> som </h2> */}
         </div>;
     }
 }
@@ -46,11 +54,4 @@ Container.defaultProps = {
 Container.propTypes = {
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        actions: bindActionCreators(getNavData, getPortData,getServiceData, dispatch)
-    }
-}
-
-export default connect(mapDispatchToProps)(Container);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Container from './../../../container/homePage.js';
+import Container from './../homeContainer/index';
 
 export default class App extends React.Component {
   render () {

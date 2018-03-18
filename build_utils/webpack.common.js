@@ -43,16 +43,15 @@ const config = {
                 exclude: /node_modules/,
                 use: [{
                     loader: "babel-loader",
-                    options: {
-                        presets: [
-                            ["env", {
-                                "targets": {
-                                    "browsers": ["last 2 versions", "safari >= 7"]
-                                },
-                                "modules": false
-                            }]
-                        ]
-
+                    options: {                        
+                        "presets": ["react", "es2015","stage-0"],
+                        "env": {
+                            "es6": true
+                        },
+                        "plugins": [
+                            "transform-decorators-legacy",
+                            "transform-class-properties"
+                        ] 
                     }
                 }]
             },

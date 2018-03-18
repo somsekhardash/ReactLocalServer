@@ -20,19 +20,19 @@ importScripts('workbox-sw.prod.v2.1.2.js');
 const fileManifest = [
   {
     "url": "/app.css",
-    "revision": "1fbb2b119849b2efe698047f0e7f2a6f"
+    "revision": "ec125a1a963d4daedddc104274184b3f"
   },
   {
     "url": "/app.js",
-    "revision": "6e412ee14c63127fd896f7f2293b1849"
+    "revision": "0dc54346683b663cdbb8441a681fc328"
   },
   {
     "url": "/app.min.css",
-    "revision": "39e0e7ed2119233ebf059ae19eabc58b"
+    "revision": "db77fb1248e1ea4499b182c007cbcb45"
   },
   {
     "url": "/global/components/experience/index.js",
-    "revision": "60837892543d1d06884a5604a2e1ceb8"
+    "revision": "e551e7c51b3de8571b4c3d088919abf6"
   },
   {
     "url": "/global/components/header/index.css",
@@ -40,7 +40,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/header/index.js",
-    "revision": "bae63cc11c0c999da32f0fc94229e304"
+    "revision": "b4c7add1932a180ec88e7e34b3a07e35"
   },
   {
     "url": "/global/components/header/index.min.css",
@@ -52,7 +52,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/portfolio/index.js",
-    "revision": "8aa2a73fac3dcfb2aaf817ce5118698b"
+    "revision": "e92d841de75d841414db6090ff4ba949"
   },
   {
     "url": "/global/components/portfolio/index.min.css",
@@ -64,7 +64,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/services/index.js",
-    "revision": "4f251f2f4c747568b5e7010b2b96fd33"
+    "revision": "1919d629fc2f5506fb3fea4df598e5a5"
   },
   {
     "url": "/global/components/services/index.min.css",
@@ -76,7 +76,7 @@ const fileManifest = [
   },
   {
     "url": "/global/components/testimonials/index.js",
-    "revision": "88337fd3a7fd0a4af7f87421d5fc7810"
+    "revision": "928c88a0878dad03d0a42da0c4e49867"
   },
   {
     "url": "/global/components/testimonials/index.min.css",
@@ -88,11 +88,11 @@ const fileManifest = [
   },
   {
     "url": "/sw.js",
-    "revision": "34a1f98c82e68302d289e0ddea5826e9"
+    "revision": "93dfaa6e5dfc183f1e56cf43c87de49d"
   },
   {
     "url": "/vendor_chunk.js",
-    "revision": "23637cd14411c2cb5112cf88cb3af610"
+    "revision": "7504bce6688299792f6b1d25e236abe9"
   }
 ];
 

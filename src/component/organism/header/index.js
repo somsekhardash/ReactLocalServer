@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
-import { prototype } from 'stream';
-import {connect} from "react-redux";
+import {observer} from 'mobx-react';
+
 require('./../../../styles/component/header/index.css');
 
-class Header extends React.Component {
+@observer class Header extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -66,10 +66,3 @@ Header.defaultProps={
 Header.propTypes={
 }
 
-let mapStateToProps = (state) => {
-    return {
-        headerData: state.headerReducer
-    };
-}
-
-export default connect(mapStateToProps)(Header);

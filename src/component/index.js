@@ -1,25 +1,19 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Provider} from "react-redux";
-import store from "./../store";
-//import App from "./ecosystem/appContainer/index";
-import Container from "./ecosystem/homeContainer/index";
-import Blogging from "./ecosystem/bloggingContainer/index";
+import App from "./ecosystem/appContainer/index";
 
-render(<Provider store={store}>
-  <Container />
-      </Provider>, document.getElementById('app'));
 
-/*let componentChecker = {
+let componentChecker = {
   "App": App,
-  "Blogging": Blogging
 }
+
 document.addEventListener("DOMContentLoaded", function(event){
-   let components = [...document.querySelectorAll("[data-component]")];
-   components.map((compo)=>{
-      let Com = componentChecker[compo.getAttribute("data-component")];
-render(<Provider store={store}>
-  <Com></Com>
-      </Provider>,compo);
-   });
-});*/
+  //  let components = [...document.querySelectorAll("[data-component]")];
+  //  components.map((compo)=>{
+  //     let Com = componentChecker[compo.getAttribute("data-component")];
+  //     render(<Com></Com>,compo);
+  //  });
+  
+  let compo = document.querySelector("[data-component='App']");
+  render(<App></App>,compo);
+});

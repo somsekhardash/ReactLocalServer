@@ -13,8 +13,7 @@ const config = {
         new webpack.LoaderOptionsPlugin({
             minimize: false
         }),
-        new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true }),
-        new CleanWebpackPlugin(["distDev"], { root: path.join(__dirname, "../") })
+        new ExtractTextPlugin({ filename: '[name].min.css', disable: false, allChunks: true })
     ]
 };
 module.exports = config;
